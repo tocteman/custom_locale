@@ -69,7 +69,7 @@ class LocaleFileForm extends Form {
 		$referenceLocaleContents = EditableLocaleFile::load($file);
 		$referenceLocaleContentsRangeInfo = Handler::getRangeInfo($request,'referenceLocaleContents');
 
-		$numberOfItemsPerPage = 50;
+		$numberOfItemsPerPage = 30;
 		$numberOfPages = ceil(sizeof($referenceLocaleContents) / $numberOfItemsPerPage);
 
 		if ($searchKey) {
