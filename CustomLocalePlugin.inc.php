@@ -145,10 +145,11 @@ class CustomLocalePlugin extends GenericPlugin {
 	}
 
 	function addCustomLocale($hookName, $args) {
-		$locale =& $args[0];
-		$localeFilename =& $args[1];
 
-		$press = Request::getPress();
+		$locale =& $args[0];
+		$localeFilename =& $args[1];		
+		$request =& Registry::get('request');
+		$press = $request->getPress();
 		$pressId = $press->getId();
 
 		$publicFilesDir = Config::getVar('files', 'public_files_dir');
