@@ -14,7 +14,7 @@ import('lib.pkp.classes.form.Form');
 class CustomLocaleForm extends Form {
 
 	var $localeFiles;
-
+	var $locales;
 	/** Custom locale plugin */
 	var $plugin;
 
@@ -26,8 +26,9 @@ class CustomLocaleForm extends Form {
 		$this->locales = $locales;
 	}
 
-	function setLocaleFiles($localeFiles) {
+	function setLocaleFiles($localeFiles) {				
 		$this->localeFiles = $localeFiles;
+	
 	}
 
 	function fetch($request, $template = null, $display = false) {

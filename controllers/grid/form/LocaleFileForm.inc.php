@@ -34,8 +34,8 @@ class LocaleFileForm extends Form {
 	/**
 	 * @see Form::fetch
 	 */
-	function fetch($request,$currentPage,$searchKey,$searchString) {
-
+	function fetch($request,$currentPage=0,$searchKey='',$searchString='') {
+		
 		$file =  $this->filePath;		
 		$locale = $this->locale;
 

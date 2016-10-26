@@ -51,7 +51,7 @@ class CustomLocaleGridHandler extends GridHandler {
 		$locale = $args['locale'];
 		$filename = $args['key'];
 		$currentPage = $args['currentPage'];
-		$searchKey = $args['searchKey'];
+		$searchKey = ''; if (isset($args['searchKey'])) {$searchKey=$args['searchKey'];};
 		$searchString = $args['searchString'];
 
 		// don't save changes if the locale is searched
@@ -115,7 +115,7 @@ class CustomLocaleGridHandler extends GridHandler {
 
 		$localeFileForm->initData();
 		$json = new JSONMessage(true, $localeFileForm->fetch($request,$currentPage,$searchKey,$searchString));
-
+		
 		return $json->getString();
 	}
 
@@ -258,11 +258,11 @@ class CustomLocaleGridHandler extends GridHandler {
 		for ($i=0; $i<sizeof($locales); $i++) {
 			$localeOptions[$i] = $keys[$i];
 		}
-
+	
 		$fieldOptions = array(
-			CUSTOMLOCALE_FIELD_PATH => 'fieldopt1',
+			'CUSTOMLOCALE_FIELD_PATH' => 'fieldopt1',
 		);
-
+		
 		$matchOptions = array(
 			'contains' => 'form.contains',
 			'is' => 'form.is'
@@ -298,7 +298,7 @@ class CustomLocaleGridHandler extends GridHandler {
 	}
 
 	function editLocaleFile($args, $request) {
-
+	
 		$context = $request->getContext();
 		$this->setupTemplate($request);
 
@@ -309,8 +309,9 @@ class CustomLocaleGridHandler extends GridHandler {
 		$localeFileForm = new LocaleFileForm(self::$plugin, $context->getId(), $args['filePath'], $args['locale']);
 
 		$localeFileForm->initData();
+				
 		$json = new JSONMessage(true, $localeFileForm->fetch($request));
-
+		
 		return $json->getString();
 	}
 }
