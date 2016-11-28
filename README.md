@@ -4,8 +4,7 @@
 
 About
 -----
-This plugin allows to customize locales via the OMP GUI. The default locales are replaced but not overwritten and can easiliy be restored. A simple documentation can be printed that lists all changes made to the locales. The locales can be customized in the tab 'locale' in management > settings > website. There is a search function for files and for locale keys within the files. The documentation can be printed in the plugin's settings section.
-This version will only work with older versions of omp-stable-1_2_0 (about middle of October 2016 or older).
+This plugin allows to customize locales via the OMP GUI. The default locales are replaced but not overwritten and can easily be restored. A simple documentation can be printed that lists all changes made to the locales. The locales can be customized in the tab 'locale' in management > settings > website. There is a search function for files and for locale keys within the files. The documentation can be printed in the plugin's settings section.
 
 License
 -------
@@ -16,7 +15,7 @@ This plugin is licensed under the GNU General Public License v2.
 System Requirements
 -------------------
 This plugin is compatible with...
- - OMP 1.2.0
+ - (TBD)
 
 Installation
 ------------
