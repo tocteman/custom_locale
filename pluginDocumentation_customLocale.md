@@ -37,9 +37,8 @@ Templates
 ---------
 - templates that substitute other templates: 0
 - templates that are modified with template hooks: 0
-- new/additional templates: 3
+- new/additional templates: 2
 	
-		customLocale.tpl
 		customLocaleGridFilter.tpl
 		localeFile.tpl
 

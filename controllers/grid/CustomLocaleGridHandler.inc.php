@@ -226,16 +226,16 @@ class CustomLocaleGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 */
 	function index($args, $request) {
-
-		$press = $request -> getPress();
-
-		import('plugins.generic.customLocale.controllers.grid.form.CustomLocaleForm');
-
-		$form = new CustomLocaleForm(self::$plugin->getTemplatePath() . 'customLocale.tpl');
+		$dispatcher = $request->getDispatcher();
 		$templateMgr = TemplateManager::getManager($request);
-		$json = new JSONMessage(true, $form->fetch($request, null, false));
-
-		return $json->getString();
+		return $templateMgr->fetchAjax(
+			'customLocaleGridUrlGridContainer',
+			$dispatcher->url(
+				$request, ROUTE_COMPONENT, null,
+				'plugins.generic.customLocale.controllers.grid.CustomLocaleGridHandler', 'fetchGrid',
+				null, array('state' => 'start')
+			)
+		);
 	}
 
 
