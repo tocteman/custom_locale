@@ -32,9 +32,7 @@
 
 <link rel="stylesheet" href="{$baseUrl}/plugins/generic/customLocale/css/customLocale.css" type="text/css" />
 
-{url|assign:actionUrl router=$smarty.const.ROUTE_COMPONENT component="plugins.generic.customLocale.controllers.grid.CustomLocaleGridHandler" op="updateLocale" currentPage=$currentPage locale=$locale key=$filePath  anchor="localeContents" escape=false}
-
-<form class="pkp_form" id="localFilesForm" method="post" action="{$actionUrl}">
+<form class="pkp_form" id="localFilesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="plugins.generic.customLocale.controllers.grid.CustomLocaleGridHandler" op="updateLocale" currentPage=$currentPage locale=$locale key=$filePath anchor="localeContents"}">
 
 <h3>{translate key="plugins.generic.customLocale.file.edit" filename=$filePath}</h3>
 <br>
