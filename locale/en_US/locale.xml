@@ -39,7 +39,7 @@
 	<message key="plugins.generic.customLocale.files.pageTitle">File name</message>
 	<message key="plugins.generic.customLocale.customLocaleFiles">Locale files</message>
 
-	<message key="plugins.generic.customLocale.seasrchDescription">Enter a complete locale key here. Keys found are highlighted.</message>
+	<message key="plugins.generic.customLocale.searchDescription">Enter a complete locale key here. Keys found are highlighted.</message>
 	<message key="plugins.generic.customLocale.fileDescription">Enter text into corresponding custom text field. Leave custom text field blank if the default OMP text should be used.</message>
 
 

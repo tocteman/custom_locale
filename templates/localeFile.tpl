@@ -44,7 +44,7 @@
 <button type="submit" onclick="checkKey()" class="submitFormButton button ui-button ui-widget ui-state-default
 					ui-corner-all ui-button-text-only">{translate key="plugins.generic.customLocale.search.key"}</button> 
 
-<p>{translate key="plugins.generic.customLocale.seasrchDescription"}</p><br><br>
+<p>{translate key="plugins.generic.customLocale.searchDescription"}</p><br><br>
 
 <table class="listing" width="100%">
 
