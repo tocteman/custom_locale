@@ -15,6 +15,11 @@ import('lib.pkp.classes.plugins.GenericPlugin');
 
 class CustomLocalePlugin extends GenericPlugin {
 
+	/**
+	 * Register the plugin.
+	 * @param $category string Plugin category
+	 * @param $path string Plugin path
+	 */
 	function register($category, $path) {
 
 		if (parent::register($category, $path)) {
@@ -69,25 +74,26 @@ class CustomLocalePlugin extends GenericPlugin {
 		return false;
 	}
 
+	/**
+	 * Hook callback: Handle a request for a page load
+	 * @param $hookName string Hook name
+	 * @param $args array Hook arguments
+	 */
 	function handleLoadRequest($hookName, $args) {
-
-		$request = $this -> getRequest();
-		$press   = $request -> getPress();		
-
+		$request = $this->getRequest();
+		$press = $request->getPress();		
 		$templateMgr = TemplateManager::getManager($request);
 
 		// get url path components
 		$page =& $args[0];
 		$op =& $args[1];
-		$tail = "/".implode("/",$request->getRequestedArgs());
+		$tail = '/'.implode('/',$request->getRequestedArgs());
 
-		if ($page=="management" && $op=="settings" && $tail=="/printCustomLocaleChanges") {
-
+		if ($page=='management' && $op=='settings' && $tail=='/printCustomLocaleChanges') {
 			$op = 'printCustomLocaleChanges';
 			define('HANDLER_CLASS', 'CustomLocaleHandler');
 			define('CUSTOMLOCALE_PLUGIN_NAME', $this->getName());
 			$this->import('CustomLocaleHandler');
-
 		}
 		return false;	
 	}
