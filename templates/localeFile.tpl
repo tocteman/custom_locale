@@ -14,8 +14,7 @@
 </script>
 
 <script type="text/javascript">
-
-	var searchString = "{$searchString}";
+	var searchString = {$searchString|json_encode};
 
 	{literal}
 
@@ -34,12 +33,12 @@
 
 <form class="pkp_form" id="localFilesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="plugins.generic.customLocale.controllers.grid.CustomLocaleGridHandler" op="updateLocale" currentPage=$currentPage locale=$locale key=$filePath anchor="localeContents"}">
 
-<h3>{translate key="plugins.generic.customLocale.file.edit" filename=$filePath}</h3>
+<h3>{translate key="plugins.generic.customLocale.file.edit" filename=$filePath|escape}</h3>
 <br>
 <input type="checkbox" style="display:none" name="searchKey" id="searchKey">
 
 <label></label>
-<input type="text" name="searchString" id="searchString" value="{$searchString}">
+<input type="text" name="searchString" id="searchString" value="{$searchString|escape}">
 
 <button type="submit" onclick="checkKey()" class="submitFormButton button ui-button ui-widget ui-state-default
 					ui-corner-all ui-button-text-only">{translate key="plugins.generic.customLocale.search.key"}</button> 
@@ -90,9 +89,9 @@
 {foreach from=$dropdownEntries item=item key=key}
 	{assign var="prefix" value=$item|substr:0:4}
 	{if $prefix=="stay"}
-		<option selected="selected" value={$key}>{$item}</option>
+		<option selected="selected" value={$key|escape}>{$item|escape}</option>
 	{else}
-		<option value={$key} >{$item}</option>
+		<option value={$key|escape} >{$item|escape}</option>
 	{/if}
 {/foreach}
 </select>
