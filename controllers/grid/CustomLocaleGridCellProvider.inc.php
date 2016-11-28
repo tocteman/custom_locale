@@ -58,7 +58,7 @@ class CustomLocaleGridCellProvider extends GridCellProvider {
 						'modal_edit',
 						true
 					),				
-					'EDIT',
+					__('common.edit'),
 					null
 				));
 			default:
