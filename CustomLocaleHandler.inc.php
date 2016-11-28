@@ -20,9 +20,13 @@ class CustomLocaleHandler extends Handler {
 		parent::__construct();
 	}
 
+	/**
+	 * Print the custom locale changes.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
 	function printCustomLocaleChanges($args, $request) {
-
-		$press = Request::getPress();
+		$press = $request->getPress();
 		$pressId = $press->getId();
 
 		$publicFilesDir = Config::getVar('files', 'public_files_dir');
