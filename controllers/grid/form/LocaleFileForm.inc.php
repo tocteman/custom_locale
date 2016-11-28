@@ -108,16 +108,16 @@ class LocaleFileForm extends Form {
 
 		}
 
-		$templateMgr->assign('filePath', $this->filePath);
-		$templateMgr->assign('localeContents', $localeContents);
-		$templateMgr->assign('locale', $locale);
-		$templateMgr->assign('currentPage',$currentPage);
-		$templateMgr->assign('dropdownEntries',$dropdownEntries);
-		$templateMgr->assign('searchString',$searchString);
-
 		import('lib.pkp.classes.core.ArrayItemIterator');
-
-		$templateMgr->assign_by_ref('referenceLocaleContents', new ArrayItemIterator($referenceLocaleContents,$currentPage, $numberOfItemsPerPage));
+		$templateMgr->assign(array(
+			'filePath' => $this->filePath,
+			'localeContents' => $localeContents,
+			'locale' => $locale,
+			'currentPage' => $currentPage,
+			'dropdownEntries' => $dropdownEntries,
+			'searchString' => $searchString,
+			'referenceLocaleContents' => new ArrayItemIterator($referenceLocaleContents, $currentPage, $numberOfItemsPerPage),
+		));
 
 		return parent::fetch($request);
 	}

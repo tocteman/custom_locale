@@ -43,22 +43,17 @@ class CustomLocaleForm extends Form {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->setCacheability(CACHEABILITY_NO_STORE);
 
-		// custom locale specific data
-		$templateMgr->assign('locales',$this->locales);
-		$templateMgr->assign('localeFiles',$this->localeFiles);
-		$templateMgr->assign('masterLocale', MASTER_LOCALE);
-
-		$templateMgr->assign($this->_data);
-
 		$templateMgr->register_function('form_language_chooser', array($this, 'smartyFormLanguageChooser'));
-		$templateMgr->assign('formLocales', $this->supportedLocales);
+		$templateMgr->assign($this->_data);
+		$templateMgr->assign(array(
+			'locales' => $this->locales,
+			'localeFiles' => $this->localeFiles,
+			'masterLocale' => MASTER_LOCALE,
+			'formLocales' => $this->supportedLocales,
+			'formLocale' => $this->getFormLocale(), // Determine the current locale to display fields with
+		));
 
-		// Determine the current locale to display fields with
-		$templateMgr->assign('formLocale', $this->getFormLocale());
-
-		$returner = $templateMgr->display($this->_template, null, null, $display);
-
-		return $returner;
+		return $templateMgr->display($this->_template, null, null, $display);
 	}
 
 }
