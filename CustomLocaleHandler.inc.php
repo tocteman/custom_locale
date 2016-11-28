@@ -31,6 +31,7 @@ class CustomLocaleHandler extends Handler {
 		$absolutePath = dirname(__FILE__); 
 		$ompPath = str_replace('/plugins/generic/customLocale','',$absolutePath);
 		$customLocalePath = $ompPath.DIRECTORY_SEPARATOR .$customLocaleDir;
+		if (!file_exists($customLocalePath) || !is_dir($customLocalePath)) fatalError("Path \"$customLocalePath\" does not exist!");
 
 		// get all xml-files in the custom locale directory 		
 		$directory = new RecursiveDirectoryIterator($customLocalePath);
