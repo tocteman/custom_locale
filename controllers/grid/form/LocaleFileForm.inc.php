@@ -22,9 +22,15 @@ class LocaleFileForm extends Form {
 	/** Custom locale plugin */
 	var $plugin;
 
-	function LocaleFileForm($customLocalePlugin, $contextId, $filePath, $locale) {
-
-		parent::Form($customLocalePlugin->getTemplatePath() . 'localeFile.tpl');
+	/**
+	 * Constructor
+	 * @param $customLocalePlugin object
+	 * @param $contextId int Context ID
+	 * @param $filePath string
+	 * @param $locale string
+	 */
+	function __construct($customLocalePlugin, $contextId, $filePath, $locale) {
+		parent::__construct($customLocalePlugin->getTemplatePath() . 'localeFile.tpl');
 		$this->filePath = $filePath;
 		$this->locale = $locale;
 

@@ -13,8 +13,11 @@ import('lib.pkp.classes.controllers.grid.GridRow');
 
 class CustomLocaleGridRow extends GridRow {
 
-	function CustomLocaleGridRow() {
-		parent::GridRow();
+	/**
+	 * Constructor
+	 */
+	function __construct() {
+		parent::__construct();
 	}
 
 	//

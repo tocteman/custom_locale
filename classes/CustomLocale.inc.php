@@ -11,8 +11,11 @@
 
 class CustomLocale extends DataObject {
 
-	function CustomLocale() {
-		parent::DataObject();
+	/**
+	 * Constructor
+	 */
+	function __construct() {
+		parent::__construct();
 	}
 
 	//

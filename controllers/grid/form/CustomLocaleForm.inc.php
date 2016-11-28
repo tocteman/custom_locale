@@ -18,8 +18,12 @@ class CustomLocaleForm extends Form {
 	/** Custom locale plugin */
 	var $plugin;
 
-	function CustomLocaleForm($template) {
-		parent::Form($template);
+	/**
+	 * Constructor
+	 * @param $template string Filename of template to display
+	 */
+	function __construct($template) {
+		parent::__construct($template);
 	}
 
 	function setLocales($locales) {

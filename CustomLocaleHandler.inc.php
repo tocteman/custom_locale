@@ -13,8 +13,11 @@ import('classes.handler.Handler');
 
 class CustomLocaleHandler extends Handler {
 
-	function CustomLocaleHandler() {
-		parent::Handler();
+	/**
+	 * Constructor
+	 */
+	function __construct() {
+		parent::__construct();
 	}
 
 	function printCustomLocaleChanges($args, $request) {

@@ -13,9 +13,12 @@ import('lib.pkp.classes.controllers.grid.GridCellProvider');
 import('lib.pkp.classes.linkAction.request.RedirectAction');
 
 class CustomLocaleGridCellProvider extends GridCellProvider {
-	
-	function CustomLocaleGridCellProvider() {
-		parent::GridCellProvider();
+
+	/**
+	 * Constructor
+	 */
+	function __construct() {
+		parent::__construct();
 	}
 
 	/**
