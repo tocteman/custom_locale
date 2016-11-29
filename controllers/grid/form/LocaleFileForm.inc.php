@@ -13,10 +13,13 @@ import('lib.pkp.classes.form.Form');
 
 class LocaleFileForm extends Form {
 
+	/** @var $contextId int */
 	var $contextId;
 
+	/** @var $filePath string */
 	var $filePath;
 
+	/** @var $locale string */
 	var $locale;
 
 	/** Custom locale plugin */
@@ -40,7 +43,7 @@ class LocaleFileForm extends Form {
 	/**
 	 * @see Form::fetch
 	 */
-	function fetch($request,$currentPage=0,$searchKey='',$searchString='') {
+	function fetch($request, $currentPage=0, $searchKey='', $searchString='') {
 		
 		$file =  $this->filePath;		
 		$locale = $this->locale;
@@ -56,8 +59,8 @@ class LocaleFileForm extends Form {
 
 
 		$publicFilesDir = Config::getVar('files', 'public_files_dir');
-		$customLocaleDir = $publicFilesDir . DIRECTORY_SEPARATOR . 'presses' . DIRECTORY_SEPARATOR . $pressId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR;
-		$customLocalePath = $customLocaleDir . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . $file;
+		$customLocaleDir = $publicFilesDir . "/presses/$pressId/" . CUSTOM_LOCALE_DIR;
+		$customLocalePath = "$customLocaleDir/$locale/$file";
 
 		if ($fileManager->fileExists($customLocalePath)) {
 			$localeContents = EditableLocaleFile::load($customLocalePath);
@@ -67,9 +70,7 @@ class LocaleFileForm extends Form {
 		}
 
 		if (!CustomLocaleAction::isLocaleFile($locale, $file)) {
-
-		} else {
-
+			fatalError("$file is not a locale file!");
 		}
 
 		$referenceLocaleContents = EditableLocaleFile::load($file);

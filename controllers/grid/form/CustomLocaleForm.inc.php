@@ -12,9 +12,12 @@
 import('lib.pkp.classes.form.Form');
 
 class CustomLocaleForm extends Form {
-
+	/** @var $localeFiles array */
 	var $localeFiles;
+
+	/* @var $locales array */
 	var $locales;
+
 	/** Custom locale plugin */
 	var $plugin;
 

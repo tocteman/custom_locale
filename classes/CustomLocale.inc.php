@@ -21,7 +21,6 @@ class CustomLocale extends DataObject {
 	//
 	// Get/set methods
 	//
-
 	function getKey(){
 		return $this->getData('key');
 	}
@@ -29,7 +28,6 @@ class CustomLocale extends DataObject {
 	function setKey($key) {
 		return $this->setData('key', $key);
 	}
-
 
 	function getLocale(){
 		return $this->getData('locale');
@@ -52,7 +50,6 @@ class CustomLocale extends DataObject {
 	}
 
 	function getFileTitle() {
-
 		return $this->getData('filetitle');
 	}
 
@@ -61,7 +58,6 @@ class CustomLocale extends DataObject {
 	}
 
 	function getTitle($locale) {
-
 		return $this->getData('title', $locale);
 	}
 
@@ -84,7 +80,6 @@ class CustomLocale extends DataObject {
 	function setFilePath($filepath) {
 		return $this->setData('filepath', $filepath);
 	}
-
 }
 
 ?>

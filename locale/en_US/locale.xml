@@ -11,7 +11,6 @@
   -->
  
 <locale name="en_US" full_name="U.S. English">
-
 	<message key="plugins.generic.customLocale.name">Custom Locale Plugin</message>
 	<message key="plugins.generic.customLocale.description">This plugin enables customization of the default user interface text used by OMP.</message>
 
@@ -41,23 +40,4 @@
 
 	<message key="plugins.generic.customLocale.searchDescription">Enter a complete locale key here. Keys found are highlighted.</message>
 	<message key="plugins.generic.customLocale.fileDescription">Enter text into corresponding custom text field. Leave custom text field blank if the default OMP text should be used.</message>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </locale>
