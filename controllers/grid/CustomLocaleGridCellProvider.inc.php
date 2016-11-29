@@ -61,9 +61,8 @@ class CustomLocaleGridCellProvider extends GridCellProvider {
 					__('common.edit'),
 					null
 				));
-			default:
-				return parent::getCellActions($request, $row, $column, $position);
 		}
+		return parent::getCellActions($request, $row, $column, $position);
 	}
 
 	/**
@@ -90,6 +89,7 @@ class CustomLocaleGridCellProvider extends GridCellProvider {
 			case 'key':
 				return array('label' => $customLocale->getKey());
 		}
+		return parent::getTemplateVarsFromColumn($row, $column);
 	}
 }
 
