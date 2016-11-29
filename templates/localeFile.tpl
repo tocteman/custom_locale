@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#localFilesForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+		$('#localeFilesForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
 	{rdelim});
 </script>
 
@@ -31,13 +31,12 @@
 
 <link rel="stylesheet" href="{$baseUrl}/plugins/generic/customLocale/css/customLocale.css" type="text/css" />
 
-<form class="pkp_form" id="localFilesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="plugins.generic.customLocale.controllers.grid.CustomLocaleGridHandler" op="updateLocale" currentPage=$currentPage locale=$locale key=$filePath anchor="localeContents"}">
+<form class="pkp_form" id="localeFilesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="plugins.generic.customLocale.controllers.grid.CustomLocaleGridHandler" op="updateLocale" currentPage=$currentPage locale=$locale key=$filePath anchor="localeContents"}">
 
 <h3>{translate key="plugins.generic.customLocale.file.edit" filename=$filePath|escape}</h3>
 <br>
 <input type="checkbox" style="display:none" name="searchKey" id="searchKey">
 
-<label></label>
 <input type="text" name="searchString" id="searchString" value="{$searchString|escape}">
 
 <button type="submit" onclick="checkKey()" class="submitFormButton button ui-button ui-widget ui-state-default
@@ -89,9 +88,9 @@
 {foreach from=$dropdownEntries item=item key=key}
 	{assign var="prefix" value=$item|substr:0:4}
 	{if $prefix=="stay"}
-		<option selected="selected" value={$key|escape}>{$item|escape}</option>
+		<option selected="selected" value="{$key|escape}">{$item|escape}</option>
 	{else}
-		<option value={$key|escape} >{$item|escape}</option>
+		<option value="{$key|escape}">{$item|escape}</option>
 	{/if}
 {/foreach}
 </select>
@@ -99,28 +98,3 @@
 {fbvFormButtons id="submitCustomLocaleFileTemplate" submitText="plugins.generic.customLocale.saveAndContinue"}
 
 </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
