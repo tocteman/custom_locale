@@ -19,6 +19,7 @@ require_once('CustomLocaleAction.inc.php');
 
 class CustomLocaleGridHandler extends GridHandler {
 
+	/** @var $form Form */
 	var $form;
 
 	/** The custom locale plugin */
@@ -47,8 +48,7 @@ class CustomLocaleGridHandler extends GridHandler {
 	}
 
 	function updateLocale($args,$request) {
-
-		$press =& Request::getPress();
+		$press = Request::getPress();
 		$pressId = $press->getId();
 		$locale = $args['locale'];
 		$filename = $args['key'];
@@ -63,8 +63,8 @@ class CustomLocaleGridHandler extends GridHandler {
 			$changes = $args['changes'];
 
 			$customFilesDir = Config::getVar('files', 'public_files_dir') .
-									DIRECTORY_SEPARATOR . 'presses' . DIRECTORY_SEPARATOR . $pressId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR . DIRECTORY_SEPARATOR . $locale;
-			$customFilePath = $customFilesDir . DIRECTORY_SEPARATOR . $filename;
+				"/presses/$pressId/" . CUSTOM_LOCALE_DIR . "/$locale";
+			$customFilePath = "$customFilesDir/$filename";
 
 			// Create empty custom locale file if it doesn't exist
 			import('lib.pkp.classes.file.FileManager');
@@ -80,7 +80,7 @@ class CustomLocaleGridHandler extends GridHandler {
 				}
 
 				$newFileContents = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
-				$newFileContents .= '<!DOCTYPE locale SYSTEM "' . $parentDirs . 'lib' . DIRECTORY_SEPARATOR . 'pkp' . DIRECTORY_SEPARATOR . 'dtd' . DIRECTORY_SEPARATOR . 'locale.dtd' . '">' . "\n";
+				$newFileContents .= '<!DOCTYPE locale SYSTEM "' . $parentDirs . 'lib/pkp/dtd/locale.dtd' . '">' . "\n";
 				$newFileContents .= '<locale name="' . $locale . '">' . "\n";
 				$newFileContents .= '</locale>';
 				$fileManager->writeFile($customFilePath, $newFileContents);
@@ -121,6 +121,7 @@ class CustomLocaleGridHandler extends GridHandler {
 		return $json->getString();
 	}
 
+	//
 	// Overridden template methods
 	//
 	/**
