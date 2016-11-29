@@ -25,9 +25,3 @@
 		{fbvFormButtons hideCancel=true submitText="common.search"}
 	{/fbvFormArea}
 </form>
-
-
-
-
-
-
