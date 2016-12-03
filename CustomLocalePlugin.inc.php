@@ -29,11 +29,11 @@ class CustomLocalePlugin extends GenericPlugin {
 				$locale = AppLocale::getLocale();
 				$localeFiles = AppLocale::getLocaleFiles($locale);
 
-				$press = Request::getPress();
-				$pressId = $press->getId();
+				$context = Request::getContext();
+				$contextId = $context->getId();
 
 				$publicFilesDir = Config::getVar('files', 'public_files_dir');
-				$customLocalePathBase = $publicFilesDir . DIRECTORY_SEPARATOR . 'presses' . DIRECTORY_SEPARATOR . $pressId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR;
+				$customLocalePathBase = "$publicFilesDir/presses/$contextId/" . CUSTOM_LOCALE_DIR . "/$locale/";
 
 				import('lib.pkp.classes.file.FileManager');
 				$fileManager = new FileManager();
@@ -81,7 +81,6 @@ class CustomLocalePlugin extends GenericPlugin {
 	 */
 	function handleLoadRequest($hookName, $args) {
 		$request = $this->getRequest();
-		$press = $request->getPress();		
 		$templateMgr = TemplateManager::getManager($request);
 
 		// get url path components
@@ -150,16 +149,21 @@ class CustomLocalePlugin extends GenericPlugin {
 		);
 	}
 
+	/**
+	 * Add custom locale data.
+	 * @param $hookName string
+	 * @param $args array
+	 * @return boolean Hook processing status
+	 */
 	function addCustomLocale($hookName, $args) {
-
 		$locale =& $args[0];
 		$localeFilename =& $args[1];		
 		$request =& Registry::get('request');
-		$press = $request->getPress();
-		$pressId = $press->getId();
+		$context = $request->getContext();
+		$contextId = $context->getId();
 
 		$publicFilesDir = Config::getVar('files', 'public_files_dir');
-		$customLocalePath = $publicFilesDir . DIRECTORY_SEPARATOR . 'presses' . DIRECTORY_SEPARATOR . $pressId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . $localeFilename;
+		$customLocalePath = "$publicFilesDir/presses/$pressId/" . CUSTOM_LOCALE_DIR . "/$locale/$localeFilename";
 
 		import('lib.pkp.classes.file.FileManager');
 		$fileManager = new FileManager();
@@ -170,10 +174,18 @@ class CustomLocalePlugin extends GenericPlugin {
 		return true;
 	}
 
+	/**
+	 * Get the plugin display name.
+	 * @return string
+	 */
 	function getDisplayName() {
 		return __('plugins.generic.customLocale.name');
 	}
 
+	/**
+	 * Get the plugin display status.
+	 * @return string
+	 */
 	function getDescription() {
 		return __('plugins.generic.customLocale.description');
 	}

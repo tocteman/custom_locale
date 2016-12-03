@@ -42,13 +42,9 @@ class CustomLocaleGridHandler extends GridHandler {
 		);
 	}
 
-	function correctCr($value) {
-		return str_replace("\r\n", "\n", $value);
-	}
-
 	function updateLocale($args,$request) {
-		$press = Request::getPress();
-		$pressId = $press->getId();
+		$context = $request->getContext();
+		$contextId = $context->getId();
 		$locale = $args['locale'];
 		$filename = $args['key'];
 		$currentPage = $args['currentPage'];
@@ -62,7 +58,7 @@ class CustomLocaleGridHandler extends GridHandler {
 			$changes = $args['changes'];
 
 			$customFilesDir = Config::getVar('files', 'public_files_dir') .
-				"/presses/$pressId/" . CUSTOM_LOCALE_DIR . "/$locale";
+				"/presses/$contextId/" . CUSTOM_LOCALE_DIR . "/$locale";
 			$customFilePath = "$customFilesDir/$filename";
 
 			// Create empty custom locale file if it doesn't exist
@@ -93,7 +89,7 @@ class CustomLocaleGridHandler extends GridHandler {
 
 			while (!empty($changes)) {
 				$key = array_shift($changes);
-				$value = $this->correctCr(array_shift($changes));
+				$value = str_replace("\r\n", "\n", array_shift($changes));
 				if (!empty($value)) {
 					if (!$file->update($key, $value)) {
 						$file->insert($key, $value);
@@ -130,9 +126,6 @@ class CustomLocaleGridHandler extends GridHandler {
 
 		parent::initialize($request);
 
-		$context = $request->getContext();
-		$press = $request -> getPress();
-
 		// Set the grid details.
 		$this->setTitle('plugins.generic.customLocale.customLocaleFiles');
 		$this->setEmptyRowText('plugins.generic.customLocale.noneCreated');
@@ -159,9 +152,8 @@ class CustomLocaleGridHandler extends GridHandler {
 	}
 
 	function loadData($request, $filter) {
-
-		$press = $request->getPress();
-		$locales = $press->getSupportedLocaleNames();
+		$context = $request->getContext();
+		$locales = $context->getSupportedLocaleNames();
 
 		$localeKeys = array_keys($locales);
 
@@ -242,8 +234,7 @@ class CustomLocaleGridHandler extends GridHandler {
 
 	function renderFilter($request) {
 		$context = $request->getContext();
-		$press = $request -> getPress();
-		$locales = $press->getSupportedLocaleNames();
+		$locales = $context->getSupportedLocaleNames();
 
 		$localeOptions = array();
 		$keys = array_keys($locales);

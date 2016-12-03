@@ -54,12 +54,12 @@ class LocaleFileForm extends Form {
 		$fileManager = new FileManager();
 
 		import('lib.pkp.classes.file.EditableLocaleFile');
-		$press = Request::getPress();
-		$pressId = $press->getId();
+		$context = $request->getContext();
+		$contextId = $context->getId();
 
 
 		$publicFilesDir = Config::getVar('files', 'public_files_dir');
-		$customLocaleDir = $publicFilesDir . "/presses/$pressId/" . CUSTOM_LOCALE_DIR;
+		$customLocaleDir = $publicFilesDir . "/presses/$contextId/" . CUSTOM_LOCALE_DIR;
 		$customLocalePath = "$customLocaleDir/$locale/$file";
 
 		if ($fileManager->fileExists($customLocalePath)) {
