@@ -23,8 +23,10 @@ class CustomLocaleGridCellProvider extends GridCellProvider {
 
 	/**
 	 * Get cell actions associated with this row/column combination
+	 * @param $request PKPRequest
 	 * @param $row GridRow
 	 * @param $column GridColumn
+	 * @param $position int GRID_ACTION_POSITION_...
 	 * @return array an array of LinkAction instances
 	 */
 	function getCellActions($request, $row, $column, $position = GRID_ACTION_POSITION_DEFAULT) {
