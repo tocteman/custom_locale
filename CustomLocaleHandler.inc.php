@@ -26,19 +26,18 @@ class CustomLocaleHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function printCustomLocaleChanges($args, $request) {
-		$press = $request->getPress();
-		$pressId = $press->getId();
+		$context = $request->getContext();
+		$contextId = $context->getId();
 
 		$publicFilesDir = Config::getVar('files', 'public_files_dir');
-		$customLocaleDir = $publicFilesDir . DIRECTORY_SEPARATOR . 'presses' . DIRECTORY_SEPARATOR . $pressId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR;
+		$customLocaleDir = "$publicFilesDir/presses/$contextId/" . CUSTOM_LOCALE_DIR;
 
 		$absolutePath = dirname(__FILE__); 
-		$ompPath = str_replace('/plugins/generic/customLocale','',$absolutePath);
-		$customLocalePath = $ompPath.DIRECTORY_SEPARATOR .$customLocaleDir;
-		if (!file_exists($customLocalePath) || !is_dir($customLocalePath)) fatalError("Path \"$customLocalePath\" does not exist!");
+		$ompPath = $request->getBasePath();
+		if (!file_exists($customLocaleDir) || !is_dir($customLocaleDir)) fatalError("Path \"$customLocaleDir\" does not exist!");
 
 		// get all xml-files in the custom locale directory 		
-		$directory = new RecursiveDirectoryIterator($customLocalePath);
+		$directory = new RecursiveDirectoryIterator($customLocaleDir);
 		$iterator = new RecursiveIteratorIterator($directory);
 		$regex = new RegexIterator($iterator, '/^.+\.xml$/i', RecursiveRegexIterator::GET_MATCH);
 		$files = iterator_to_array($regex);
