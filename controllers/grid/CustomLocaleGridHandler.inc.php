@@ -10,7 +10,6 @@
  */
 
 import('lib.pkp.classes.controllers.grid.GridHandler');
-import('plugins.generic.customLocale.controllers.grid.CustomLocaleGridRow');
 import('plugins.generic.customLocale.controllers.grid.CustomLocaleGridCellProvider');
 import('classes.handler.Handler');
 import('plugins.generic.customLocale.classes.CustomLocale');
@@ -207,16 +206,6 @@ class CustomLocaleGridHandler extends GridHandler {
 		return array(new PagingFeature());
 	}
 
-	//
-	// Overridden methods from GridHandler
-	//
-
-	/**
-	 * @copydoc Gridhandler::getRowInstance()
-	 */
-	function getRowInstance() {
-		return new CustomLocaleGridRow();
-	}
 
 	//
 	// Public Grid Actions
