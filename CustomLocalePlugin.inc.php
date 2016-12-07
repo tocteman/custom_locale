@@ -163,7 +163,7 @@ class CustomLocalePlugin extends GenericPlugin {
 		$contextId = $context->getId();
 
 		$publicFilesDir = Config::getVar('files', 'public_files_dir');
-		$customLocalePath = "$publicFilesDir/presses/$pressId/" . CUSTOM_LOCALE_DIR . "/$locale/$localeFilename";
+		$customLocalePath = "$publicFilesDir/presses/$contextId/" . CUSTOM_LOCALE_DIR . "/$locale/$localeFilename";
 
 		import('lib.pkp.classes.file.FileManager');
 		$fileManager = new FileManager();
