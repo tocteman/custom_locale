@@ -124,7 +124,7 @@ class CustomLocaleGridHandler extends GridHandler {
 	 */
 	function initialize($request, $args = null) {
 
-		parent::initialize($request);
+		parent::initialize($request, $args);
 
 		// Set the grid details.
 		$this->setTitle('plugins.generic.customLocale.customLocaleFiles');

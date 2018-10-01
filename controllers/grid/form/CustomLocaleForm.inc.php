@@ -38,7 +38,7 @@ class CustomLocaleForm extends Form {
 	
 	}
 
-	function fetch($request, $template = null, $display = false) {
+	function fetch($request, $template = null) {
 
 		// Set custom template.
 		if (!is_null($template)) $this->_template = $template;
@@ -46,7 +46,7 @@ class CustomLocaleForm extends Form {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->setCacheability(CACHEABILITY_NO_STORE);
 
-		$templateMgr->register_function('form_language_chooser', array($this, 'smartyFormLanguageChooser'));
+		$templateMgr->registerPlugin('function', 'form_language_chooser', array($this, 'smartyFormLanguageChooser'));
 		$templateMgr->assign($this->_data);
 		$templateMgr->assign(array(
 			'locales' => $this->locales,
@@ -56,7 +56,7 @@ class CustomLocaleForm extends Form {
 			'formLocale' => $this->getFormLocale(), // Determine the current locale to display fields with
 		));
 
-		return $templateMgr->display($this->_template, null, null, $display);
+		return $templateMgr->display($this->_template);
 	}
 
 }
