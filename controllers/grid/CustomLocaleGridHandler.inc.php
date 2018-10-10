@@ -51,7 +51,12 @@ class CustomLocaleGridHandler extends GridHandler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	function updateLocale($args,$request) {
+	/**
+	 * Update the custom locale data.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function updateLocale($args, $request) {
 		$context = $request->getContext();
 		$contextId = $context->getId();
 		$locale = $args['locale'];
@@ -77,7 +82,7 @@ class CustomLocaleGridHandler extends GridHandler {
 			import('lib.pkp.classes.file.EditableLocaleFile');
 			if (!$fileManager->fileExists($customFilePath)) {
 
-				$numParentDirs = substr_count($customFilePath, DIRECTORY_SEPARATOR); 
+				$numParentDirs = substr_count($customFilePath, DIRECTORY_SEPARATOR);
 				$parentDirs = '';
 				for ($i=0; $i<$numParentDirs; $i++) {
 					$parentDirs .= '..' . DIRECTORY_SEPARATOR;
@@ -120,9 +125,7 @@ class CustomLocaleGridHandler extends GridHandler {
 		$localeFileForm = new LocaleFileForm(self::$plugin, $context->getId(), $filename, $locale);
 
 		$localeFileForm->initData();
-		$json = new JSONMessage(true, $localeFileForm->fetch($request,$currentPage,$searchKey,$searchString));
-		
-		return $json->getString();
+		return new JSONMessage(true, $localeFileForm->fetch($request,$currentPage,$searchKey,$searchString));
 	}
 
 	//
@@ -131,7 +134,7 @@ class CustomLocaleGridHandler extends GridHandler {
 	/**
 	 * @copydoc Gridhandler::initialize()
 	 */
-	function initialize($request, $args = null) {
+	function initialize($request, $args=null) {
 
 		parent::initialize($request, $args);
 
@@ -160,6 +163,9 @@ class CustomLocaleGridHandler extends GridHandler {
 
 	}
 
+	/**
+	 * @copydoc GridHandler::loadData()
+	 */
 	function loadData($request, $filter) {
 		$context = $request->getContext();
 		$locales = $context->getSupportedLocaleNames();
@@ -180,8 +186,7 @@ class CustomLocaleGridHandler extends GridHandler {
 					$count++;
 				}
 			}
-		}
-		else {
+		} else {
 			$localeFilesSelected = $localeFiles;
 		}
 
@@ -191,7 +196,7 @@ class CustomLocaleGridHandler extends GridHandler {
 			$customLocale->setId($i);
 			$customLocale->setLocale($locale);
 			$customLocale->setFilePath($localeFilesSelected[$i]);
-			$customLocale->setContextId($request->getContext()->getId());   
+			$customLocale->setContextId($request->getContext()->getId());
 			$customLocale->setFileTitle($localeFilesSelected[$i]);
 			$gridDataElements[]=$customLocale;
 		}
@@ -235,12 +240,14 @@ class CustomLocaleGridHandler extends GridHandler {
 	 * @return string Filter template.
 	 */
 	function getFilterForm() {
-
 		$customLocalePlugin = self::$plugin;
 		$templatePath = $customLocalePlugin->getTemplatePath();
 		return $templatePath . 'customLocaleGridFilter.tpl';
 	}
 
+	/**
+	 * @copydoc GridHandler::renderFilter()
+	 */
 	function renderFilter($request) {
 		$context = $request->getContext();
 		$locales = $context->getSupportedLocaleNames();
@@ -250,11 +257,11 @@ class CustomLocaleGridHandler extends GridHandler {
 		for ($i=0; $i<sizeof($locales); $i++) {
 			$localeOptions[$i] = $keys[$i];
 		}
-	
+
 		$fieldOptions = array(
 			'CUSTOMLOCALE_FIELD_PATH' => 'fieldopt1',
 		);
-		
+
 		$matchOptions = array(
 			'contains' => 'form.contains',
 			'is' => 'form.is'
@@ -271,7 +278,6 @@ class CustomLocaleGridHandler extends GridHandler {
 
 	/**
 	 * @copydoc GridHandler::getFilterSelectionData()
-	 * @return array Filter selection data.
 	 */
 	function getFilterSelectionData($request) {
 		// Get the search terms.
@@ -290,7 +296,7 @@ class CustomLocaleGridHandler extends GridHandler {
 	}
 
 	function editLocaleFile($args, $request) {
-	
+
 		$context = $request->getContext();
 		$this->setupTemplate($request);
 
@@ -301,11 +307,8 @@ class CustomLocaleGridHandler extends GridHandler {
 		$localeFileForm = new LocaleFileForm(self::$plugin, $context->getId(), $args['filePath'], $args['locale']);
 
 		$localeFileForm->initData();
-				
-		$json = new JSONMessage(true, $localeFileForm->fetch($request));
-		
-		return $json->getString();
+
+		return new JSONMessage(true, $localeFileForm->fetch($request));
 	}
 }
 
-?>

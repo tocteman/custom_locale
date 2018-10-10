@@ -21,23 +21,17 @@ class CustomLocaleForm extends Form {
 	/** Custom locale plugin */
 	var $plugin;
 
-	/**
-	 * Constructor
-	 * @param $template string Filename of template to display
-	 */
-	function __construct($template) {
-		parent::__construct($template);
-	}
-
 	function setLocales($locales) {
 		$this->locales = $locales;
 	}
 
-	function setLocaleFiles($localeFiles) {				
+	function setLocaleFiles($localeFiles) {
 		$this->localeFiles = $localeFiles;
-	
 	}
 
+	/**
+	 * @copydoc Form::fetch()
+	 */
 	function fetch($request, $template = null) {
 
 		// Set custom template.
@@ -58,7 +52,5 @@ class CustomLocaleForm extends Form {
 
 		return $templateMgr->display($this->_template);
 	}
-
 }
 
-?>

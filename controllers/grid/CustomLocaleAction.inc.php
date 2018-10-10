@@ -11,12 +11,16 @@
 
 
 class CustomLocaleAction {
-
-	function getLocaleFiles($locale) {
+	/**
+	 * Get a list of locale files.
+	 * @param $locale
+	 * @return array
+	 */
+	static function getLocaleFiles($locale) {
 		if (!AppLocale::isLocaleValid($locale)) return null;
 
-		$localeFiles =& AppLocale::makeComponentMap($locale);
-		$plugins =& PluginRegistry::loadAllPlugins();
+		$localeFiles = AppLocale::makeComponentMap($locale);
+		$plugins = PluginRegistry::loadAllPlugins();
 
 		foreach (array_keys($plugins) as $key) {
 
@@ -31,18 +35,24 @@ class CustomLocaleAction {
 					}
 					if (is_array($localeFile)) {
 						$localeFiles = array_merge($localeFiles, $localeFile);
-					} 
+					}
 				}
-			} 
+			}
 			unset($plugin);
 		}
 		return $localeFiles;
 	}
 
-	function isLocaleFile($locale, $filename) {
-		if (in_array($filename, CustomLocaleAction::getLocaleFiles($locale))) return true;
+	/**
+	 * Determine whether a specified file is a locale file.
+	 * @param $locale string
+	 * @param $filename string
+	 * @return boolean
+	 */
+	static function isLocaleFile($locale, $filename) {
+		if (in_array($filename, self::getLocaleFiles($locale))) return true;
 		return false;
 	}
 
 }
-?>
+

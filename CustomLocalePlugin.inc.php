@@ -21,7 +21,6 @@ class CustomLocalePlugin extends GenericPlugin {
 	 * @param $path string Plugin path
 	 */
 	function register($category, $path) {
-
 		if (parent::register($category, $path)) {
 			if ($this->getEnabled()) {
 
@@ -62,15 +61,13 @@ class CustomLocalePlugin extends GenericPlugin {
 	 * @param $args array The parameters to the invoked hook
 	 */
 	function setupGridHandler($hookName, $args) {
-
-		$component =& $args[0];
-
+		$component = $args[0];
 		if ($component == 'plugins.generic.customLocale.controllers.grid.CustomLocaleGridHandler') {
 			// Allow the custom locale grid handler to get the plugin object
 			import($component);
 			CustomLocaleGridHandler::setPlugin($this);
 			return true;
-		} 
+		}
 		return false;
 	}
 
@@ -94,29 +91,12 @@ class CustomLocalePlugin extends GenericPlugin {
 			define('CUSTOMLOCALE_PLUGIN_NAME', $this->getName());
 			$this->import('CustomLocaleHandler');
 		}
-		return false;	
-	}
-
-
-	/**
-	 * Display verbs for the management interface.
-	 * @return array Management verbs
-	 */ 
-	function getManagementVerbs() {
-
-		$verbs = parent::getManagementVerbs();
-
-		if ($this->getEnabled()) {
-			$verbs[] = array('index', __('plugins.generic.customLocale.customize'));
-			$verbs[] = array('printChanges', __('plugins.generic.customLocale.printChanges'));
-		}
-
-		return $verbs;
+		return false;
 	}
 
 	/**
 	 * @copydoc Plugin::getActions()
-	 */ 
+	 */
 	function getActions($request, $actionArgs) {
 		$dispatcher = $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.RedirectAction');
@@ -157,7 +137,7 @@ class CustomLocalePlugin extends GenericPlugin {
 	 */
 	function addCustomLocale($hookName, $args) {
 		$locale =& $args[0];
-		$localeFilename =& $args[1];		
+		$localeFilename =& $args[1];
 		$request =& Registry::get('request');
 		$context = $request->getContext();
 		$contextId = $context->getId();
@@ -217,4 +197,3 @@ class CustomLocalePlugin extends GenericPlugin {
 
 }
 
-?>

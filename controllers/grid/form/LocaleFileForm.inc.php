@@ -41,11 +41,13 @@ class LocaleFileForm extends Form {
 	}
 
 	/**
-	 * @see Form::fetch
+	 * @copydoc Form::fetch
+	 * @param $currentPage int
+	 * @param $searchKey string
+	 * @param $searchString string
 	 */
 	function fetch($request, $currentPage=0, $searchKey='', $searchString='') {
-		
-		$file =  $this->filePath;		
+		$file =  $this->filePath;
 		$locale = $this->locale;
 
 		$templateMgr =& TemplateManager::getManager();
@@ -64,7 +66,6 @@ class LocaleFileForm extends Form {
 
 		if ($fileManager->fileExists($customLocalePath)) {
 			$localeContents = EditableLocaleFile::load($customLocalePath);
-
 		} else {
 			$localeContents = null;
 		}
@@ -82,7 +83,7 @@ class LocaleFileForm extends Form {
 		if ($searchKey) {
 
 			$keysReferenceLocaleContents = array_keys($referenceLocaleContents);
-			$keyPosition = array_search($searchString, $keysReferenceLocaleContents); 
+			$keyPosition = array_search($searchString, $keysReferenceLocaleContents);
 
 			if ($keyPosition==0) {
 				$currentPage = 1;
@@ -122,7 +123,5 @@ class LocaleFileForm extends Form {
 
 		return parent::fetch($request);
 	}
-
 }
 
-?>

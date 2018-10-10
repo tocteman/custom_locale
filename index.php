@@ -1,5 +1,5 @@
-<?php 
- 
+<?php
+
 /**
  * @file plugins/generic/customLocale/index.php
  *
@@ -12,6 +12,5 @@
 
 require_once('CustomLocalePlugin.inc.php');
 
-return new CustomLocalePlugin(); 
+return new CustomLocalePlugin();
 
-?> 

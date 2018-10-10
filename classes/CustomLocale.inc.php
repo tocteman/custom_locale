@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/generic/customLocale/classes/CustomLocale.inc.php 
+ * @file plugins/generic/customLocale/classes/CustomLocale.inc.php
  *
  * Copyright (c) 2016 Language Science Press
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -10,14 +10,6 @@
  */
 
 class CustomLocale extends DataObject {
-
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
 	//
 	// Get/set methods
 	//
@@ -82,4 +74,3 @@ class CustomLocale extends DataObject {
 	}
 }
 
-?>

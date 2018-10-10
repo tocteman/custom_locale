@@ -12,14 +12,6 @@
 import('classes.handler.Handler');
 
 class CustomLocaleHandler extends Handler {
-
-	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
 	/**
 	 * Print the custom locale changes.
 	 * @param $args array
@@ -32,11 +24,11 @@ class CustomLocaleHandler extends Handler {
 		$publicFilesDir = Config::getVar('files', 'public_files_dir');
 		$customLocaleDir = "$publicFilesDir/presses/$contextId/" . CUSTOM_LOCALE_DIR;
 
-		$absolutePath = dirname(__FILE__); 
+		$absolutePath = dirname(__FILE__);
 		$ompPath = $request->getBasePath();
 		if (!file_exists($customLocaleDir) || !is_dir($customLocaleDir)) fatalError("Path \"$customLocaleDir\" does not exist!");
 
-		// get all xml-files in the custom locale directory 		
+		// get all xml-files in the custom locale directory
 		$directory = new RecursiveDirectoryIterator($customLocaleDir);
 		$iterator = new RecursiveIteratorIterator($directory);
 		$regex = new RegexIterator($iterator, '/^.+\.xml$/i', RecursiveRegexIterator::GET_MATCH);
@@ -45,8 +37,8 @@ class CustomLocaleHandler extends Handler {
 
 		import('lib.pkp.classes.file.FileManager');
 		import('lib.pkp.classes.file.EditableLocaleFile');
-		
-		$output = "";
+
+		$output = '';
 
 		// iterate through all customized files
 		for ($i=0; $i<sizeof($fileKeys);$i++) {
@@ -65,7 +57,7 @@ class CustomLocaleHandler extends Handler {
 			else {
 				$ompFile = substr($pathToFile,$posLocale);
 			}
-	
+
 			$fileManagerCustomized = new FileManager();
 			$localeContentsCustomized = null;
 			if ($fileManagerCustomized->fileExists($fileKeys[$i])) {
@@ -86,24 +78,20 @@ class CustomLocaleHandler extends Handler {
 
 			for ($ii=0; $ii<sizeof($localeKeys);$ii++) {
 				$pos = $ii+1;
-				$output = $output . "\n\n" . $pos .". locale key: " . $localeKeys[$ii];
+				$output = $output . "\n\n" . $pos . '. locale key: ' . $localeKeys[$ii];
 				$output = $output . "\n\n	original content:   " . $localeContents[$localeKeys[$ii]];
 				$output = $output . "\n	customized content: " . $localeContentsCustomized[$localeKeys[$ii]];
 			}
 			if (sizeof($localeKeys)>0) {
 				$output = $output . "\n\n__________________________________________________________________________________\n\n";
 			}
-			
 		}
 
 		$filename = 'customLocale_changes.txt';
-		header("Content-Type: text/plain");
+		header('Content-Type: text/plain');
 		header('Content-Disposition: attachment; filename="'.$filename.'"');
-		header("Content-Length: " . strlen($output));
+		header('Content-Length: ' . strlen($output));
 		echo $output;
 	}
-
-
 }
 
-?>

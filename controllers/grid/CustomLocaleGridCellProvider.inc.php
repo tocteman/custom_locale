@@ -15,13 +15,6 @@ import('lib.pkp.classes.linkAction.request.RedirectAction');
 class CustomLocaleGridCellProvider extends GridCellProvider {
 
 	/**
-	 * Constructor
-	 */
-	function __construct() {
-		parent::__construct();
-	}
-
-	/**
 	 * Get cell actions associated with this row/column combination
 	 * @param $request PKPRequest
 	 * @param $row GridRow
@@ -41,9 +34,9 @@ class CustomLocaleGridCellProvider extends GridCellProvider {
 
 				return array(new LinkAction(
 					'edit',
-					new AjaxAction(	
+					new AjaxAction(
 						$router->url($request, null, null, 'edit', null, array('localeKey' => $customLocale->getPath()))
-					),					
+					),
 					'edit',
 					null
 				));
@@ -59,7 +52,7 @@ class CustomLocaleGridCellProvider extends GridCellProvider {
 						__('grid.action.edit'),
 						'modal_edit',
 						true
-					),				
+					),
 					__('common.edit'),
 					null
 				));
@@ -95,4 +88,3 @@ class CustomLocaleGridCellProvider extends GridCellProvider {
 	}
 }
 
-?>
