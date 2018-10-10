@@ -42,6 +42,15 @@ class CustomLocaleGridHandler extends GridHandler {
 		);
 	}
 
+	/**
+	 * @copydoc PKPHandler::authorize()
+	 */
+	function authorize($request, &$args, $roleAssignments) {
+		import('lib.pkp.classes.security.authorization.ContextAccessPolicy');
+		$this->addPolicy(new ContextAccessPolicy($request, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
+	}
+
 	function updateLocale($args,$request) {
 		$context = $request->getContext();
 		$contextId = $context->getId();
