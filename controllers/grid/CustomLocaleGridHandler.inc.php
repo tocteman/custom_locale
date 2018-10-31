@@ -38,7 +38,7 @@ class CustomLocaleGridHandler extends GridHandler {
 		parent::__construct();
 		$this->addRoleAssignment(
 			array(ROLE_ID_MANAGER),
-			array('index', 'editLocaleFile', 'updateLocale')
+			array('fetchGrid', 'index', 'editLocaleFile', 'updateLocale')
 		);
 	}
 
