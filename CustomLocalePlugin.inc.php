@@ -16,12 +16,10 @@ import('lib.pkp.classes.plugins.GenericPlugin');
 class CustomLocalePlugin extends GenericPlugin {
 
 	/**
-	 * Register the plugin.
-	 * @param $category string Plugin category
-	 * @param $path string Plugin path
+	 * @copydoc Plugin::register
 	 */
-	function register($category, $path) {
-		if (parent::register($category, $path)) {
+	function register($category, $path, $mainContextId = null) {
+		if (parent::register($category, $path, $mainContextId)) {
 			if ($this->getEnabled()) {
 
 				// Add custom locale data for already registered locale files.
