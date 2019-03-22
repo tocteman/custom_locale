@@ -241,8 +241,7 @@ class CustomLocaleGridHandler extends GridHandler {
 	 */
 	function getFilterForm() {
 		$customLocalePlugin = self::$plugin;
-		$templatePath = $customLocalePlugin->getTemplatePath();
-		return $templatePath . 'customLocaleGridFilter.tpl';
+		return $customLocalePlugin->getTemplateResource('customLocaleGridFilter.tpl');
 	}
 
 	/**

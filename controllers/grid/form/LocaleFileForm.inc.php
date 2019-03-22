@@ -33,7 +33,7 @@ class LocaleFileForm extends Form {
 	 * @param $locale string
 	 */
 	function __construct($customLocalePlugin, $contextId, $filePath, $locale) {
-		parent::__construct($customLocalePlugin->getTemplatePath() . 'localeFile.tpl');
+		parent::__construct($customLocalePlugin->getTemplateResource('localeFile.tpl'));
 		$this->filePath = $filePath;
 		$this->locale = $locale;
 

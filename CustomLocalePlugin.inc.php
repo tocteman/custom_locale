@@ -187,13 +187,5 @@ class CustomLocalePlugin extends GenericPlugin {
 		// Permit other plugins to continue interacting with this hook
 		return false;
 	}
-
-	/**
-	 * @copydoc PKPPlugin::getTemplatePath
-	 */
-	function getTemplatePath() {
-		return parent::getTemplatePath() . 'templates/';
-	}
-
 }
 
