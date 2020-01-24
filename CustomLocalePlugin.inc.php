@@ -10,7 +10,6 @@
  *
  */
 
-define('CUSTOM_LOCALE_DIR', 'customLocale');
 import('lib.pkp.classes.plugins.GenericPlugin');
 
 class CustomLocalePlugin extends GenericPlugin {
@@ -19,38 +18,37 @@ class CustomLocalePlugin extends GenericPlugin {
 	 * @copydoc Plugin::register
 	 */
 	function register($category, $path, $mainContextId = null) {
-		if (parent::register($category, $path, $mainContextId)) {
-			if ($this->getEnabled()) {
+		if (!parent::register($category, $path, $mainContextId)) return false;
 
-				// Add custom locale data for already registered locale files.
-				$locale = AppLocale::getLocale();
-				$localeFiles = AppLocale::getLocaleFiles($locale);
+		if ($this->getEnabled()) {
+			// Add custom locale data for already registered locale files.
+			$locale = AppLocale::getLocale();
+			$localeFiles = AppLocale::getLocaleFiles($locale);
 
-				$context = Request::getContext();
-				$contextId = $context->getId();
+			$request = Application::get()->getRequest();
+			$context = $request->getContext();
 
-				$publicFilesDir = Config::getVar('files', 'public_files_dir');
-				$customLocalePathBase = "$publicFilesDir/presses/$contextId/" . CUSTOM_LOCALE_DIR . "/$locale/";
+			import('lib.pkp.classes.file.ContextFileManager');
+			$contextFileManager = new ContextFileManager($context->getId());
+			$customLocalePathBase = $contextFileManager->getBasePath() . "customLocale/$locale/";
 
-				import('lib.pkp.classes.file.FileManager');
-				$fileManager = new FileManager();
-				foreach ($localeFiles as $localeFile) {
-					$customLocalePath = $customLocalePathBase . $localeFile->getFilename();
-					if ($fileManager->fileExists($customLocalePath)) {
-						AppLocale::registerLocaleFile($locale, $customLocalePath, false);
-					}
+			import('lib.pkp.classes.file.FileManager');
+			$fileManager = new FileManager();
+			foreach ($localeFiles as $localeFile) {
+				$customLocalePath = $customLocalePathBase . $localeFile->getFilename();
+				if ($contextFileManager->fileExists($customLocalePath)) {
+					AppLocale::registerLocaleFile($locale, $customLocalePath, false);
 				}
-
-				// Add custom locale data for all locale files registered after this plugin
-				HookRegistry::register('PKPLocale::registerLocaleFile', array(&$this, 'addCustomLocale'));
-				HookRegistry::register('LoadComponentHandler', array($this, 'setupGridHandler'));
-				HookRegistry::register('Templates::Management::Settings::website', array($this, 'callbackShowWebsiteSettingsTabs'));
-				HookRegistry::register('LoadHandler', array($this, 'handleLoadRequest'));
 			}
 
-			return true;
+			// Add custom locale data for all locale files registered after this plugin
+			HookRegistry::register('PKPLocale::registerLocaleFile', array($this, 'addCustomLocale'));
+			HookRegistry::register('LoadComponentHandler', array($this, 'setupGridHandler'));
+			HookRegistry::register('Template::Settings::website', array($this, 'callbackShowWebsiteSettingsTabs'));
+			HookRegistry::register('LoadHandler', array($this, 'handleLoadRequest'));
 		}
-		return false;
+
+		return true;
 	}
 
 	/**
@@ -81,9 +79,9 @@ class CustomLocalePlugin extends GenericPlugin {
 		// get url path components
 		$page =& $args[0];
 		$op =& $args[1];
-		$tail = '/'.implode('/',$request->getRequestedArgs());
+		$tail = implode('/', $request->getRequestedArgs());
 
-		if ($page=='management' && $op=='settings' && $tail=='/printCustomLocaleChanges') {
+		if ($page=='management' && $op=='settings' && $tail=='printCustomLocaleChanges') {
 			$op = 'printCustomLocaleChanges';
 			define('HANDLER_CLASS', 'CustomLocaleHandler');
 			define('CUSTOMLOCALE_PLUGIN_NAME', $this->getName());
@@ -138,14 +136,11 @@ class CustomLocalePlugin extends GenericPlugin {
 		$localeFilename =& $args[1];
 		$request =& Registry::get('request');
 		$context = $request->getContext();
-		$contextId = $context->getId();
 
-		$publicFilesDir = Config::getVar('files', 'public_files_dir');
-		$customLocalePath = "$publicFilesDir/presses/$contextId/" . CUSTOM_LOCALE_DIR . "/$locale/$localeFilename";
+		$contextFileManager = new ContextFileManager($context->getId());
+		$customLocalePath = $contextFileManager->getBasePath() . "customLocale/$locale/$localeFilename";
 
-		import('lib.pkp.classes.file.FileManager');
-		$fileManager = new FileManager();
-		if ($fileManager->fileExists($customLocalePath)) {
+		if ($contextFileManager->fileExists($customLocalePath)) {
 			AppLocale::registerLocaleFile($locale, $customLocalePath, false);
 		}
 
@@ -175,12 +170,10 @@ class CustomLocalePlugin extends GenericPlugin {
 	 * @return boolean Hook handling status
 	 */
 	function callbackShowWebsiteSettingsTabs($hookName, $args) {
+		$templateMgr = $args[1];
 		$output =& $args[2];
-		$request =& Registry::get('request');
-		$dispatcher = $request->getDispatcher();
 
-		// Add a new tab for custom locale
-		$output .= '<li><a name="customLocale" href="' . $dispatcher->url($request, ROUTE_COMPONENT, null, 'plugins.generic.customLocale.controllers.grid.CustomLocaleGridHandler', 'index') . '">' . __('plugins.generic.customLocale.customLocale') . '</a></li>';
+		$output .= $templateMgr->fetch($this->getTemplateResource('customLocaleTab.tpl'));
 
 		// Permit other plugins to continue interacting with this hook
 		return false;

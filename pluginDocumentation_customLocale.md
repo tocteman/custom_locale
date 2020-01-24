@@ -50,7 +50,7 @@ Database access, server access
 - nonrecurring server access: no
 - recurring server access: yes
 
-		creating, reading from and writing to files in public/presses/%pressId%
+		creating, reading from and writing to files in public/contexts/%contextId%
  
 Classes, plugins, external software
 -----------------------

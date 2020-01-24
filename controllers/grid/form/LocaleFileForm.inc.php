@@ -12,10 +12,6 @@
 import('lib.pkp.classes.form.Form');
 
 class LocaleFileForm extends Form {
-
-	/** @var $contextId int */
-	var $contextId;
-
 	/** @var $filePath string */
 	var $filePath;
 
@@ -28,16 +24,14 @@ class LocaleFileForm extends Form {
 	/**
 	 * Constructor
 	 * @param $customLocalePlugin object
-	 * @param $contextId int Context ID
 	 * @param $filePath string
 	 * @param $locale string
 	 */
-	function __construct($customLocalePlugin, $contextId, $filePath, $locale) {
+	function __construct($customLocalePlugin, $filePath, $locale) {
 		parent::__construct($customLocalePlugin->getTemplateResource('localeFile.tpl'));
+		$this->plugin = $customLocalePlugin;
 		$this->filePath = $filePath;
 		$this->locale = $locale;
-
-		$this->plugin = $customLocalePlugin;
 	}
 
 	/**
@@ -47,35 +41,17 @@ class LocaleFileForm extends Form {
 	 * @param $searchString string
 	 */
 	function fetch($request, $currentPage=0, $searchKey='', $searchString='') {
-		$file =  $this->filePath;
+		$file = $this->filePath;
 		$locale = $this->locale;
+		if (!CustomLocaleAction::isLocaleFile($locale, $file)) throw new Exception("$file is not a locale file!");
 
-		$templateMgr =& TemplateManager::getManager();
+		$contextFileManager = new ContextFileManager($request->getContext()->getId());
+		$customLocalePath = $contextFileManager->getBasePath() . "customLocale/$locale/$file";
 
-		import('lib.pkp.classes.file.FileManager');
-		$fileManager = new FileManager();
-
-		import('lib.pkp.classes.file.EditableLocaleFile');
-		$context = $request->getContext();
-		$contextId = $context->getId();
-
-
-		$publicFilesDir = Config::getVar('files', 'public_files_dir');
-		$customLocaleDir = $publicFilesDir . "/presses/$contextId/" . CUSTOM_LOCALE_DIR;
-		$customLocalePath = "$customLocaleDir/$locale/$file";
-
-		if ($fileManager->fileExists($customLocalePath)) {
-			$localeContents = EditableLocaleFile::load($customLocalePath);
-		} else {
-			$localeContents = null;
-		}
-
-		if (!CustomLocaleAction::isLocaleFile($locale, $file)) {
-			fatalError("$file is not a locale file!");
-		}
-
-		$referenceLocaleContents = EditableLocaleFile::load($file);
-		$referenceLocaleContentsRangeInfo = Handler::getRangeInfo($request,'referenceLocaleContents');
+		import('lib.pkp.classes.i18n.LocaleFile');
+		if ($contextFileManager->fileExists($customLocalePath)) $localeContents = LocaleFile::load($customLocalePath);
+		else $localeContents = null;
+		$referenceLocaleContents = LocaleFile::load($file);
 
 		$numberOfItemsPerPage = 30;
 		$numberOfPages = ceil(sizeof($referenceLocaleContents) / $numberOfItemsPerPage);
@@ -107,10 +83,10 @@ class LocaleFileForm extends Form {
 			} else {
 				$dropdownEntries[$i] = "go to page " . $i;
 			}
-
 		}
 
 		import('lib.pkp.classes.core.ArrayItemIterator');
+		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign(array(
 			'filePath' => $this->filePath,
 			'localeContents' => $localeContents,
@@ -118,7 +94,7 @@ class LocaleFileForm extends Form {
 			'currentPage' => $currentPage,
 			'dropdownEntries' => $dropdownEntries,
 			'searchString' => $searchString,
-			'referenceLocaleContents' => new ArrayItemIterator($referenceLocaleContents, $currentPage, $numberOfItemsPerPage),
+			'referenceLocaleContents' => new ArrayItemIterator(LocaleFile::load($file), $currentPage, $numberOfItemsPerPage),
 		));
 
 		return parent::fetch($request);

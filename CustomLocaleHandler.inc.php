@@ -19,14 +19,10 @@ class CustomLocaleHandler extends Handler {
 	 */
 	function printCustomLocaleChanges($args, $request) {
 		$context = $request->getContext();
-		$contextId = $context->getId();
 
-		$publicFilesDir = Config::getVar('files', 'public_files_dir');
-		$customLocaleDir = "$publicFilesDir/presses/$contextId/" . CUSTOM_LOCALE_DIR;
-
-		$absolutePath = dirname(__FILE__);
-		$ompPath = $request->getBasePath();
-		if (!file_exists($customLocaleDir) || !is_dir($customLocaleDir)) fatalError("Path \"$customLocaleDir\" does not exist!");
+		$contextFileManager = new ContextFileManager($context->getId());
+		$customLocaleDir = $contextFileManager->getBasePath() . 'customLocale';
+		if (!file_exists($customLocaleDir) || !is_dir($customLocaleDir)) throw new Exception("Path \"$customLocaleDir\" does not exist!");
 
 		// get all xml-files in the custom locale directory
 		$directory = new RecursiveDirectoryIterator($customLocaleDir);
@@ -35,54 +31,47 @@ class CustomLocaleHandler extends Handler {
 		$files = iterator_to_array($regex);
 		$fileKeys = array_keys($files);
 
-		import('lib.pkp.classes.file.FileManager');
-		import('lib.pkp.classes.file.EditableLocaleFile');
-
 		$output = '';
 
+		import('lib.pkp.classes.i18n.LocaleFile');
 		// iterate through all customized files
-		for ($i=0; $i<sizeof($fileKeys);$i++) {
-
-			$pathToFile = $fileKeys[$i];
+		foreach ($fileKeys as $pathToFile) {
 			$posLib = strpos($pathToFile,'lib');
 			$posLocale = strpos($pathToFile,'locale');
 			$posPlugins = strpos($pathToFile,'plugins');
 
-			$ompFile = '';
+			$localeFile = '';
 			if (!$posLib===false) {
-				$ompFile = substr($pathToFile,$posLib);
+				$localeFile = substr($pathToFile,$posLib);
 			} else if (!$posPlugins===false) {
-				$ompFile = substr($pathToFile,$posPlugins);
+				$localeFile = substr($pathToFile,$posPlugins);
 			}
 			else {
-				$ompFile = substr($pathToFile,$posLocale);
+				$localeFile = substr($pathToFile,$posLocale);
 			}
 
-			$fileManagerCustomized = new FileManager();
 			$localeContentsCustomized = null;
-			if ($fileManagerCustomized->fileExists($fileKeys[$i])) {
-				$localeContentsCustomized = EditableLocaleFile::load($fileKeys[$i]);
+			if ($contextFileManager->fileExists($pathToFile)) {
+				$localeContentsCustomized = LocaleFile::load($pathToFile);
 			}
 
-			$fileManager = new FileManager();
 			$localeContents = null;
-			if ($fileManager->fileExists($ompFile)) {
-				$localeContents = EditableLocaleFile::load($ompFile);
+			if ($contextFileManager->fileExists($localeFile)) {
+				$localeContents = LocaleFile::load($localeFile);
 			}
 
 			$localeKeys = array_keys($localeContentsCustomized);
 
 			if (sizeof($localeKeys)>0) {
-				$output = $output . "\nFile: " . $ompFile;
+				$output = $output . "\nFile: " . $localeFile;
 			}
 
-			for ($ii=0; $ii<sizeof($localeKeys);$ii++) {
-				$pos = $ii+1;
-				$output = $output . "\n\n" . $pos . '. locale key: ' . $localeKeys[$ii];
-				$output = $output . "\n\n	original content:   " . $localeContents[$localeKeys[$ii]];
-				$output = $output . "\n	customized content: " . $localeContentsCustomized[$localeKeys[$ii]];
+			foreach ($localeKeys as $index => $localeKey) {
+				$output = $output . "\n\n" . $index+1 . '. locale key: ' . $localeKey;
+				$output = $output . "\n\n	original content:   " . $localeContents[$localeKey];
+				$output = $output . "\n	customized content: " . $localeContentsCustomized[$localeKey];
 			}
-			if (sizeof($localeKeys)>0) {
+			if (!empty($localeKeys)) {
 				$output = $output . "\n\n__________________________________________________________________________________\n\n";
 			}
 		}

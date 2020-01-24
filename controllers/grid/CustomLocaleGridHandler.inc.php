@@ -14,7 +14,7 @@ import('plugins.generic.customLocale.controllers.grid.CustomLocaleGridCellProvid
 import('classes.handler.Handler');
 import('plugins.generic.customLocale.classes.CustomLocale');
 
-require_once('CustomLocaleAction.inc.php');
+import('plugins.generic.customLocale.controllers.grid.CustomLocaleAction');
 
 class CustomLocaleGridHandler extends GridHandler {
 
@@ -38,7 +38,7 @@ class CustomLocaleGridHandler extends GridHandler {
 		parent::__construct();
 		$this->addRoleAssignment(
 			array(ROLE_ID_MANAGER),
-			array('fetchGrid', 'index', 'editLocaleFile', 'updateLocale')
+			array('fetchGrid', 'editLocaleFile', 'updateLocale')
 		);
 	}
 
@@ -67,52 +67,42 @@ class CustomLocaleGridHandler extends GridHandler {
 
 		// don't save changes if the locale is searched
 		if (!$searchKey) {
-
 			// save changes
 			$changes = $args['changes'];
 
-			$customFilesDir = Config::getVar('files', 'public_files_dir') .
-				"/presses/$contextId/" . CUSTOM_LOCALE_DIR . "/$locale";
+			import('lib.pkp.classes.file.ContextFileManager');
+			$contextFileManager = new ContextFileManager($context->getId());
+			$customFilesDir = $contextFileManager->getBasePath() . "customLocale/$locale/";
 			$customFilePath = "$customFilesDir/$filename";
 
-			// Create empty custom locale file if it doesn't exist
-			import('lib.pkp.classes.file.FileManager');
-			$fileManager = new FileManager();
+			if ($args['nextPage']) $currentPage = $args['nextPage'];
 
-			import('lib.pkp.classes.file.EditableLocaleFile');
-			if (!$fileManager->fileExists($customFilePath)) {
-
-				$numParentDirs = substr_count($customFilePath, DIRECTORY_SEPARATOR);
-				$parentDirs = '';
-				for ($i=0; $i<$numParentDirs; $i++) {
-					$parentDirs .= '..' . DIRECTORY_SEPARATOR;
-				}
-
-				$newFileContents = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
-				$newFileContents .= '<!DOCTYPE locale SYSTEM "' . $parentDirs . 'lib/pkp/dtd/locale.dtd' . '">' . "\n";
-				$newFileContents .= '<locale name="' . $locale . '">' . "\n";
-				$newFileContents .= '</locale>';
-				$fileManager->writeFile($customFilePath, $newFileContents);
+			if ($contextFileManager->fileExists($customFilePath)) {
+				$translations = Gettext\Translations::fromPoFile($customFilePath);
+			} else {
+				$translations = new \Gettext\Translations();
 			}
-
-			if ($args['nextPage']) {
-				$currentPage = $args['nextPage'];
-			}
-
-			$file = new EditableLocaleFile($locale, $customFilePath);
 
 			while (!empty($changes)) {
 				$key = array_shift($changes);
 				$value = str_replace("\r\n", "\n", array_shift($changes));
 				if (!empty($value)) {
-					if (!$file->update($key, $value)) {
-						$file->insert($key, $value);
+					$translation = $translations->find('', $key);
+					if ($translation) {
+						$translation->setTranslation($value);
+					} else {
+						$translation = new \Gettext\Translation('', $key);
+						$translation->setTranslation($value);
+						$translations->append($translation);
 					}
 				} else {
-					$file->delete($key);
+					if ($translation = $translations->find('', $key)) {
+						$translations->offsetUnset($translation->getId());
+					}
 				}
 			}
-			$file->write();
+			$contextFileManager->mkdirtree(dirname($customFilePath));
+			$translations->toPoFile($customFilePath);
 		}
 
 		$context = $request->getContext();
@@ -121,11 +111,10 @@ class CustomLocaleGridHandler extends GridHandler {
 		// Create and present the edit form
 		import('plugins.generic.customLocale.controllers.grid.form.LocaleFileForm');
 
-		$customLocalePlugin = self::$plugin;
-		$localeFileForm = new LocaleFileForm(self::$plugin, $context->getId(), $filename, $locale);
+		$localeFileForm = new LocaleFileForm(self::$plugin, $filename, $locale);
 
 		$localeFileForm->initData();
-		return new JSONMessage(true, $localeFileForm->fetch($request,$currentPage,$searchKey,$searchString));
+		return new JSONMessage(true, $localeFileForm->fetch($request, $currentPage, $searchKey, $searchString));
 	}
 
 	//
@@ -217,62 +206,32 @@ class CustomLocaleGridHandler extends GridHandler {
 	// Public Grid Actions
 	//
 	/**
-	 * Display the grid's containing page.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function index($args, $request) {
-		$dispatcher = $request->getDispatcher();
-		$templateMgr = TemplateManager::getManager($request);
-		return $templateMgr->fetchAjax(
-			'customLocaleGridUrlGridContainer',
-			$dispatcher->url(
-				$request, ROUTE_COMPONENT, null,
-				'plugins.generic.customLocale.controllers.grid.CustomLocaleGridHandler', 'fetchGrid',
-				null, array('state' => 'start')
-			)
-		);
-	}
-
-
-	/**
 	 * @copydoc GridHandler::getFilterForm()
 	 * @return string Filter template.
 	 */
 	function getFilterForm() {
-		$customLocalePlugin = self::$plugin;
-		return $customLocalePlugin->getTemplateResource('customLocaleGridFilter.tpl');
+		return self::$plugin->getTemplateResource('customLocaleGridFilter.tpl');
 	}
 
 	/**
 	 * @copydoc GridHandler::renderFilter()
 	 */
-	function renderFilter($request) {
-		$context = $request->getContext();
-		$locales = $context->getSupportedLocaleNames();
-
-		$localeOptions = array();
-		$keys = array_keys($locales);
-		for ($i=0; $i<sizeof($locales); $i++) {
-			$localeOptions[$i] = $keys[$i];
-		}
-
-		$fieldOptions = array(
-			'CUSTOMLOCALE_FIELD_PATH' => 'fieldopt1',
+	function renderFilter($request, $filterData = array()) {
+		$locales = $request->getContext()->getSupportedLocaleNames();
+		return parent::renderFilter(
+			$request,
+			array_merge_recursive(
+				$filterData,
+				array(
+					'localeOptions' => array_keys($locales),
+					'fieldOptions' => array('CUSTOMLOCALE_FIELD_PATH' => 'fieldopt1'),
+					'matchOptions' => array(
+						'contains' => 'form.contains',
+						'is' => 'form.is'
+					),
+				)
+			)
 		);
-
-		$matchOptions = array(
-			'contains' => 'form.contains',
-			'is' => 'form.is'
-		);
-
-		$filterData = array(
-			'localeOptions' => $localeOptions,
-			'fieldOptions' => $fieldOptions,
-			'matchOptions' => $matchOptions
-		);
-
-		return parent::renderFilter($request, $filterData);
 	}
 
 	/**
@@ -294,19 +253,20 @@ class CustomLocaleGridHandler extends GridHandler {
 		);
 	}
 
+	/**
+	 * Edit a locale file.
+	 * @param $args array
+	 * @param $request PKPKRequest
+	 */
 	function editLocaleFile($args, $request) {
-
 		$context = $request->getContext();
 		$this->setupTemplate($request);
 
 		// Create and present the edit form
 		import('plugins.generic.customLocale.controllers.grid.form.LocaleFileForm');
 
-		$customLocalePlugin = self::$plugin;
-		$localeFileForm = new LocaleFileForm(self::$plugin, $context->getId(), $args['filePath'], $args['locale']);
-
+		$localeFileForm = new LocaleFileForm(self::$plugin, $args['filePath'], $args['locale']);
 		$localeFileForm->initData();
-
 		return new JSONMessage(true, $localeFileForm->fetch($request));
 	}
 }
