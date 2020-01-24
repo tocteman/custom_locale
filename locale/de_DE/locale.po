@@ -1,0 +1,72 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-01-24T16:11:01+00:00\n"
+"PO-Revision-Date: 2020-01-24T16:11:01+00:00\n"
+"Language: \n"
+
+msgid "plugins.generic.customLocale.name"
+msgstr "Plug-In für die Regionalanpassung"
+
+msgid "plugins.generic.customLocale.description"
+msgstr "Dieses Plug-In ermöglicht die Anpassung der Standardeinstellungen für die Texte der von OMP verwendeten Benutzungsoberfläche."
+
+msgid "plugins.generic.customLocale.search.fileName"
+msgstr "Suche in den Dateinamen"
+
+msgid "plugins.generic.customLocale.search.key"
+msgstr "Suche nach einem Schlüssel"
+
+msgid "plugins.generic.customLocale.saveAndContinue"
+msgstr "Speichern und fortsetzen"
+
+msgid "plugins.generic.customLocale.noneCreated"
+msgstr "Es wurden keine Dateien gefunden."
+
+msgid "plugins.generic.customLocale.printChanges"
+msgstr "Dokumentation downloaden"
+
+msgid "plugins.generic.customLocale.localeKey.description"
+msgstr "Geben Sie hier den kompletten Schlüssen ein nach dem gesucht werden soll."
+
+msgid "plugins.generic.customLocale.path"
+msgstr "Aktion"
+
+msgid "plugins.generic.customLocale.localeKey"
+msgstr "Schlüssel"
+
+msgid "plugins.generic.customLocale.localeKeyValue"
+msgstr "Wert"
+
+msgid "plugins.generic.customLocale.customize"
+msgstr "Anpassen"
+
+msgid "grid.action.printChanges"
+msgstr "Hier können Sie eine Datei downloaden, die alle Anpassungen auflistet."
+
+msgid "plugins.generic.customLocale.file.edit"
+msgstr "{$filename} bearbeiten"
+
+msgid "plugins.generic.customLocale.file.reference"
+msgstr "Standardtext"
+
+msgid "plugins.generic.customLocale.file.custom"
+msgstr "Angepasster Text"
+
+msgid "plugins.generic.customLocale.customLocale"
+msgstr "Regionaleinstellung"
+
+msgid "plugins.generic.customLocale.files.pageTitle"
+msgstr "Dateiname"
+
+msgid "plugins.generic.customLocale.customLocaleFiles"
+msgstr "Regionaleinstellungsdateien"
+
+msgid "plugins.generic.customLocale.fileDescription"
+msgstr "Geben Sie den angepassten Text in das jeweilige Feld ein. Lassen Sie das Feld leer, wenn der OMP-Standardtext genutzt werden soll."
