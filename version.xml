@@ -2,18 +2,18 @@
 <!DOCTYPE version SYSTEM "../../../lib/pkp/dtd/pluginVersion.dtd">
 
 <!--
- * plugins/generic/customLocale/version.xml
+ * version.xml
  *
- * Copyright (c) 2016 Language Science Press
+ * Copyright (c) 2016-2020 Language Science Press
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Plugin version information.
-  -->
+ -->
 <version>
 	<application>customLocale</application>
 	<type>plugins.generic</type>
-	<release>1.0.0.0</release>
-	<date>2015-09-25</date>
+	<release>1.0.1.0</release>
+	<date>2020-01-24</date>
 	<lazy-load>1</lazy-load>
 	<class>CustomLocalePlugin</class>
 </version>

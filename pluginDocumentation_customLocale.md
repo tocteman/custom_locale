@@ -2,12 +2,12 @@ Key data
 ============
 
 - name of the plugin: Custom Locale Plugin
-- author: Carola Fanselow
-- current version: 1.0.0.0
-- tested on OMP version: 1.2.0
-- github link: https://github.com/langsci/customLocale.git
+- author: Carola Fanselow (updates by Alec Smecher)
+- current version: 1.0.1.0
+- see .travis.yml for compatibility information
+- github link: https://github.com/asmecher/customLocale.git
 - community plugin: yes
-- date: 2016/05/21
+- date: 2020/01/24
 
 Description
 ============
@@ -24,7 +24,7 @@ Hooks
 
 		PKPLocale::registerLocaleFile
 		LoadComponentHandler
-		Templates::Management::Settings::website
+		Template::Settings::website
 		LoadHandler
 
 New pages
@@ -50,7 +50,7 @@ Database access, server access
 - nonrecurring server access: no
 - recurring server access: yes
 
-		creating, reading from and writing to files in public/contexts/%contextId%
+		creating, reading from and writing to files in [files_dir]/[presses|journals]/%contextId%/customLocale
  
 Classes, plugins, external software
 -----------------------
@@ -89,7 +89,7 @@ Classes, plugins, external software
 Metrics
 --------
 - number of files: 19
-- lines of code: 1668
+- lines of code: 1k LOC
 
 Settings
 --------

@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @file plugins/generic/customLocale/controllers/grid/form/LocaleFileForm.inc.php
+ * @file controllers/grid/form/LocaleFileForm.inc.php
  *
- * Copyright (c) 2016 Language Science Press
+ * Copyright (c) 2016-2020 Language Science Press
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class LocaleFileForm

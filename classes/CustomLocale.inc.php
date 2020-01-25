@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @file plugins/generic/customLocale/classes/CustomLocale.inc.php
+ * @file classes/CustomLocale.inc.php
  *
- * Copyright (c) 2016 Language Science Press
+ * Copyright (c) 2016-2020 Language Science Press
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CustomLocale
@@ -13,32 +13,32 @@ class CustomLocale extends DataObject {
 	//
 	// Get/set methods
 	//
-	function getKey(){
+	function getKey() {
 		return $this->getData('key');
 	}
 
 	function setKey($key) {
-		return $this->setData('key', $key);
+		$this->setData('key', $key);
 	}
 
-	function getLocale(){
+	function getLocale() {
 		return $this->getData('locale');
 	}
 
 	function setLocale($locale) {
-		return $this->setData('locale', $locale);
+		$this->setData('locale', $locale);
 	}
 
-	function getContextId(){
+	function getContextId() {
 		return $this->getData('contextId');
 	}
 
 	function setContextId($contextId) {
-		return $this->setData('contextId', $contextId);
+		$this->setData('contextId', $contextId);
 	}
 
 	function setFileTitle($title) {
-		return $this->setData('filetitle', $title);
+		$this->setData('filetitle', $title);
 	}
 
 	function getFileTitle() {
@@ -46,7 +46,7 @@ class CustomLocale extends DataObject {
 	}
 
 	function setTitle($title, $locale) {
-		return $this->setData('title', $title, $locale);
+		$this->setData('title', $title, $locale);
 	}
 
 	function getTitle($locale) {
@@ -62,7 +62,7 @@ class CustomLocale extends DataObject {
 	}
 
 	function setPath($path) {
-		return $this->setData('path', $path);
+		$this->setData('path', $path);
 	}
 
 	function getFilePath() {
@@ -70,7 +70,7 @@ class CustomLocale extends DataObject {
 	}
 
 	function setFilePath($filepath) {
-		return $this->setData('filepath', $filepath);
+		$this->setData('filepath', $filepath);
 	}
 }
 
