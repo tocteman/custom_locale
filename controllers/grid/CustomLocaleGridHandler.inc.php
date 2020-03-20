@@ -65,17 +65,13 @@ class CustomLocaleGridHandler extends GridHandler {
 		$searchKey = ''; if (isset($args['searchKey'])) {$searchKey=$args['searchKey'];};
 		$searchString = $args['searchString'];
 
-		// don't save changes if the locale is searched
-		if (!$searchKey) {
-			// save changes
-			$changes = $args['changes'];
-
+		// save changes
+		$changes = (array) $args['changes'];
+		if (!empty($changes)) {
 			import('lib.pkp.classes.file.ContextFileManager');
 			$contextFileManager = new ContextFileManager($context->getId());
 			$customFilesDir = $contextFileManager->getBasePath() . "customLocale/$locale/";
 			$customFilePath = "$customFilesDir/$filename";
-
-			if ($args['nextPage']) $currentPage = $args['nextPage'];
 
 			if ($contextFileManager->fileExists($customFilePath)) {
 				$translations = Gettext\Translations::fromPoFile($customFilePath);
@@ -83,9 +79,8 @@ class CustomLocaleGridHandler extends GridHandler {
 				$translations = new \Gettext\Translations();
 			}
 
-			while (!empty($changes)) {
-				$key = array_shift($changes);
-				$value = str_replace("\r\n", "\n", array_shift($changes));
+			foreach ($changes as $key => $value) {
+				$value = str_replace("\r\n", "\n", $value);
 				if (!empty($value)) {
 					$translation = $translations->find('', $key);
 					if ($translation) {
@@ -101,9 +96,11 @@ class CustomLocaleGridHandler extends GridHandler {
 					}
 				}
 			}
+
 			$contextFileManager->mkdirtree(dirname($customFilePath));
 			$translations->toPoFile($customFilePath);
 		}
+
 
 		$context = $request->getContext();
 		$this->setupTemplate($request);
