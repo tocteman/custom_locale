@@ -46,6 +46,13 @@ class CustomLocalePlugin extends GenericPlugin {
 			HookRegistry::register('LoadComponentHandler', array($this, 'setupGridHandler'));
 			HookRegistry::register('Template::Settings::website', array($this, 'callbackShowWebsiteSettingsTabs'));
 			HookRegistry::register('LoadHandler', array($this, 'handleLoadRequest'));
+
+			$templateMgr = TemplateManager::getManager($request);
+			$templateMgr->addJavaScript(
+				'customLocale',
+				$request->getBaseUrl() . '/' . $this->getPluginPath() . '/js/customLocale.js',
+				['contexts' => 'backend']
+			);
 		}
 
 		return true;

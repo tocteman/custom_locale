@@ -52,29 +52,14 @@ class LocaleFileForm extends Form {
 		if ($contextFileManager->fileExists($customLocalePath)) $localeContents = LocaleFile::load($customLocalePath);
 		else $localeContents = null;
 		$referenceLocaleContents = LocaleFile::load($file);
-
-		$numberOfItemsPerPage = 30;
-		$numberOfPages = ceil(sizeof($referenceLocaleContents) / $numberOfItemsPerPage);
-
-		if ($searchKey) {
-
-			$keysReferenceLocaleContents = array_keys($referenceLocaleContents);
-			$keyPosition = array_search($searchString, $keysReferenceLocaleContents);
-
-			if ($keyPosition==0) {
-				$currentPage = 1;
-			}
-
-			if ($keyPosition>0) {
-				$currentPage = floor($keyPosition/$numberOfItemsPerPage)+1;
-			}
-
+		$referenceLocaleContentsArray = [];
+		foreach ($referenceLocaleContents as $key => $value) {
+			$referenceLocaleContentsArray[] = [
+				'localeKey' => $key,
+				'value' => $value,
+			];
 		}
 
-		// set page number, default: go to first page
-		if (!$currentPage){
-			$currentPage=1;
-		}
 
 		$dropdownEntries = array();
 		for ($i=1; $i<=$numberOfPages; $i++) {
@@ -91,10 +76,10 @@ class LocaleFileForm extends Form {
 			'filePath' => $this->filePath,
 			'localeContents' => $localeContents,
 			'locale' => $locale,
+			'referenceLocaleContentsArray' => $referenceLocaleContentsArray,
 			'currentPage' => $currentPage,
 			'dropdownEntries' => $dropdownEntries,
 			'searchString' => $searchString,
-			'referenceLocaleContents' => new ArrayItemIterator(LocaleFile::load($file), $currentPage, $numberOfItemsPerPage),
 		));
 
 		return parent::fetch($request);
