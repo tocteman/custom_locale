@@ -36,11 +36,8 @@ class LocaleFileForm extends Form {
 
 	/**
 	 * @copydoc Form::fetch
-	 * @param $currentPage int
-	 * @param $searchKey string
-	 * @param $searchString string
 	 */
-	function fetch($request, $currentPage=0, $searchKey='', $searchString='') {
+	function fetch($request) {
 		$file = $this->filePath;
 		$locale = $this->locale;
 		if (!CustomLocaleAction::isLocaleFile($locale, $file)) throw new Exception("$file is not a locale file!");
@@ -60,16 +57,6 @@ class LocaleFileForm extends Form {
 			];
 		}
 
-
-		$dropdownEntries = array();
-		for ($i=1; $i<=$numberOfPages; $i++) {
-			if ($i==$currentPage) {
-				$dropdownEntries[$i] = "stay on page " . $i;
-			} else {
-				$dropdownEntries[$i] = "go to page " . $i;
-			}
-		}
-
 		import('lib.pkp.classes.core.ArrayItemIterator');
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign(array(
@@ -77,9 +64,6 @@ class LocaleFileForm extends Form {
 			'localeContents' => $localeContents,
 			'locale' => $locale,
 			'referenceLocaleContentsArray' => $referenceLocaleContentsArray,
-			'currentPage' => $currentPage,
-			'dropdownEntries' => $dropdownEntries,
-			'searchString' => $searchString,
 		));
 
 		return parent::fetch($request);

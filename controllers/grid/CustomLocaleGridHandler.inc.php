@@ -61,9 +61,6 @@ class CustomLocaleGridHandler extends GridHandler {
 		$contextId = $context->getId();
 		$locale = $args['locale'];
 		$filename = $args['key'];
-		$currentPage = $args['currentPage'];
-		$searchKey = ''; if (isset($args['searchKey'])) {$searchKey=$args['searchKey'];};
-		$searchString = $args['searchString'];
 
 		// save changes
 		$changes = (array) $args['changes'];
@@ -99,6 +96,11 @@ class CustomLocaleGridHandler extends GridHandler {
 
 			$contextFileManager->mkdirtree(dirname($customFilePath));
 			$translations->toPoFile($customFilePath);
+
+			// Create success notification and close modal on save
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->createTrivialNotification($request->getUser()->getId());
+			return new JSONMessage(false);
 		}
 
 
@@ -111,7 +113,7 @@ class CustomLocaleGridHandler extends GridHandler {
 		$localeFileForm = new LocaleFileForm(self::$plugin, $filename, $locale);
 
 		$localeFileForm->initData();
-		return new JSONMessage(true, $localeFileForm->fetch($request, $currentPage, $searchKey, $searchString));
+		return new JSONMessage(true, $localeFileForm->fetch($request));
 	}
 
 	//
