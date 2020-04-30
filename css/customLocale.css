@@ -32,16 +32,9 @@ input.valueChanged, textArea.valueChanged {
 .customLocale__cellTable tr {
 	border-bottom: inherit;
 }
-/* .customLocale__cellTable {
-	border-bottom: 1px solid #eee;
-} */
 
 .customLocale__cellHeader td {
 	font-weight: bold;
-}
-
-.customLocale__keyHeader {
-	padding-bottom: 0.5rem;
 }
 
 textarea.customLocale__fixedSize {

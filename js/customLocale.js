@@ -10,6 +10,7 @@ $(function() {
 			filteredKeysList: [], // filtered keys allows for paginating search results
 			currentLocaleKeys: [], // keys available on a given page
 			searchPhrase: '',
+			phraseSearched: '',
 			currentPage: 0,
 			itemsPerPage: 50,
 			displaySearchResults: false,
@@ -20,14 +21,16 @@ $(function() {
 					this.initializeView();
 					return;
 				}
-
+				this.phraseSearched = this.searchPhrase;
 				this.displaySearchResults = true;
 				this.currentPage = -1;
 				var filteredKeysList = [];
 				for (var i in this.localeKeysMaster) {
-					if (new RegExp(this.searchPhrase, 'i' ).test(this.localeKeysMaster[i].localeKey)
-							|| new RegExp(this.searchPhrase, 'i' ).test(this.localeKeysMaster[i].value)) {
-								filteredKeysList.push({
+					if (
+						new RegExp(this.searchPhrase, 'i' ).test(this.localeKeysMaster[i].localeKey)
+						|| new RegExp(this.searchPhrase, 'i' ).test(this.localeKeysMaster[i].value)
+					) {
+						filteredKeysList.push({
 							localeKey: this.localeKeysMaster[i].localeKey,
 							value: this.localeKeysMaster[i].value,
 						});
@@ -42,7 +45,8 @@ $(function() {
 				this.currentLocaleKeys = this.filteredKeysList.slice(start,end);
 			},
 			initializeView: function() {
-				this.searchPhrase = "";
+				this.searchPhrase = '';
+				this.phraseSearched = '';
 				this.currentPage = 1;
 				this.displaySearchResults = false;
 
@@ -74,7 +78,7 @@ $(function() {
 		mounted: function() {
 			this.initializeView();
 			// merges edited into localEdited
-			this.localEdited = {} // TODO: Should all changes be cleared when searching?
+			this.localEdited = {}
 			for (var attrName in this.edited) {
 				this.localEdited[attrName] = this.edited[attrName];
 			}

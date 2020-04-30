@@ -18,13 +18,13 @@
 				</span>
 				<div class="pkpHeader__actions">
 					{* SEARCH BOX *}
-					<div class="pkpSearch customLocales__search">
+					<div class="pkpSearch">
 						<label>
 							<span class="-screenReader">{translate key="common.search"}</span>
 							<input
 								type="search"
 								id="1351"
-								placeholder="Search"
+								placeholder="{translate key="common.search"}"
 								class="pkpSearch__input"
 								v-model="searchPhrase"
 								@keydown.enter.prevent="search"
@@ -43,6 +43,8 @@
 							<span class="-screenReader">{translate key="common.clearSearch"}</span>
 						</button>
 					</div>
+					<button class="pkpButton" @click.prevent="search">{translate key="common.search"}</button>
+
 				</div>
 				<div class="customLocale__headerDescription">
 					{translate key="plugins.generic.customLocale.file.edit" filename=$filePath|escape}
@@ -54,7 +56,7 @@
 				</td>
 			</tr>
 			{* MAIN BODY *}
-			<tr v-for="localeKey in currentLocaleKeys" :key="localeKey.localeKey">
+			<tr v-for="(localeKey, index) in currentLocaleKeys" :key="localeKey.localeKey">
 				<td>
 					<table class="pkpTable customLocale__cellTable">
 						<tr class="customLocale__cellHeader">
@@ -62,10 +64,11 @@
 						</tr>
 						<tr>
 							<td width="50%">
-								<div class="customLocale__keyHeader">{translate key="plugins.generic.customLocale.file.reference"}</div>
+								<label class="-screenReader" :for="'default-text-' + index">{translate key="plugins.generic.customLocale.file.reference"}</label>
 								<div v-if="localeKey.value.length > 50">
-									<textarea
+									<textarea 
 										class="customLocale__fixedSize"
+										:id="'default-text-' + index"
 										v-model="localeKey.value"
 										rows="5"
 										cols="50"
@@ -76,6 +79,7 @@
 								<div v-else>
 									<input
 										type="text"
+										:id="'default-text-' + index"
 										v-model="localeKey.value"
 										size="50"
 										disabled
@@ -83,10 +87,11 @@
 								</div>
 							</td>
 							<td width="50%">
-								<div class="customLocale__keyHeader">{translate key="plugins.generic.customLocale.file.custom"}</div>
+								<label class="-screenReader" :for="'custom-text-' + index">{translate key="plugins.generic.customLocale.file.custom"}</label>
 								<div v-if="localeKey.value.length > 50">
 									<textarea
 										class="customLocale__fixedSize"
+										:id="'custom-text-' + index"
 										:name="'changes[' + localeKey.localeKey + ']'"
 										v-model="localEdited[localeKey.localeKey]"
 										rows="5"
@@ -98,6 +103,7 @@
 								<div v-else>
 									<input
 										type="text"
+										:id="'custom-text-' + index"
 										:name="'changes[' + localeKey.localeKey + ']'"
 										v-model="localEdited[localeKey.localeKey]"
 										v-bind:class="{ valueChanged : localEdited[localeKey.localeKey] != null}"
@@ -149,8 +155,6 @@
 				</li>
 			</ul>
 		</nav>
-
-		
 
 		{fbvFormButtons id="submitCustomLocaleFileTemplate" submitText="plugins.generic.customLocale.saveAndContinue"}
 	</div>

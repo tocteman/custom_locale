@@ -75,4 +75,4 @@ msgid "plugins.generic.customLocale.fileDescription"
 msgstr "Geben Sie den angepassten Text in das jeweilige Feld ein. Lassen Sie das Feld leer, wenn der OMP-Standardtext genutzt werden soll."
 
 msgid "plugins.generic.customLocale.searchResultsCount"
-msgstr "{{ currentLocaleKeys.length }} von {{ filteredKeysList.length }} Ergebnissen ausgegeben."
+msgstr "{{ currentLocaleKeys.length }} von {{ filteredKeysList.length }} Ergebnissen für \"{{ phraseSearched }}\" ausgegeben."

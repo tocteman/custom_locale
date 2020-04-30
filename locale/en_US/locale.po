@@ -78,4 +78,4 @@ msgid "plugins.generic.customLocale.fileDescription"
 msgstr "Enter text into corresponding custom text field. Leave custom text field blank if the default OMP text should be used."
 
 msgid "plugins.generic.customLocale.searchResultsCount"
-msgstr "Displaying {{ currentLocaleKeys.length }} of {{ filteredKeysList.length }} results."
+msgstr "Displaying {{ currentLocaleKeys.length }} of {{ filteredKeysList.length }} results for \"{{ phraseSearched }}.\""
