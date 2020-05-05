@@ -6,11 +6,6 @@
  *
  */
 
-td.input {
-	border-top: 1px solid #999;
-	padding: 15px 10px 5px 10px;
-}
-
 input.valueChanged, textArea.valueChanged {
 	background-color:#FFFF93 !important;
 }
@@ -39,9 +34,5 @@ input.valueChanged, textArea.valueChanged {
 
 textarea.customLocale__fixedSize {
 	resize: none;
-}
-
-.activeTest {
- font-weight: bold;
 }
 

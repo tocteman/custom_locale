@@ -1,6 +1,6 @@
 - Custom Locale Plugin
-- Version: 1.0.1
-- Author: Carola Fanselow (updates by Alec Smecher)
+- Version: 1.0.2
+- Author: Carola Fanselow (updates by Alec Smecher, Erik Hanson)
 
 About
 -----
