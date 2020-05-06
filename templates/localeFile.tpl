@@ -23,7 +23,7 @@
 							<span class="-screenReader">{translate key="common.search"}</span>
 							<input
 								type="search"
-								id="1351"
+								id="customLocale__searchInput"
 								placeholder="{translate key="common.search"}"
 								class="pkpSearch__input"
 								v-model="searchPhrase"
@@ -34,7 +34,7 @@
 							</span>
 						</label>
 						<button 
-							aria-controls="1351" 
+							aria-controls="customLocale__searchInput" 
 							class="pkpSearch__clear"
 							@click.prevent="initializeView"
 							v-if="searchPhrase.length > 0"

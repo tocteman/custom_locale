@@ -3,7 +3,7 @@ Key data
 
 - name of the plugin: Custom Locale Plugin
 - author: Carola Fanselow (updates by Alec Smecher, Erik Hanson)
-- current version: 1.0.2.0
+- current version: 1.1.0.0
 - see .travis.yml for compatibility information
 - github link: https://github.com/asmecher/customLocale.git
 - community plugin: yes
