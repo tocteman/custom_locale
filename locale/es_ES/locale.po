@@ -1,0 +1,75 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-01-24T16:10:52+00:00\n"
+"PO-Revision-Date: 2020-01-24T16:10:52+00:00\n"
+"Language: es_ES\n"
+
+msgid "plugins.generic.customLocale.name"
+msgstr "Módulo de personalización"
+
+msgid "plugins.generic.customLocale.description"
+msgstr "Este módulo permite la personalización de los mensajes predeterminados en la interfaz de usuario utilizado por OMP."
+
+msgid "plugins.generic.customLocale.search.fileName"
+msgstr "Buscar en nombres de archivos"
+
+msgid "plugins.generic.customLocale.search.key"
+msgstr "Buscar llave"
+
+msgid "plugins.generic.customLocale.saveAndContinue"
+msgstr "Guardar y continuar"
+
+msgid "plugins.generic.customLocale.noneCreated"
+msgstr "No se encontraron archivos."
+
+msgid "plugins.generic.customLocale.printChanges"
+msgstr "Descargar documentación"
+
+msgid "plugins.generic.customLocale.localeKey.description"
+msgstr "Ingrese la llave completa a buscar."
+
+msgid "plugins.generic.customLocale.path"
+msgstr "Acción"
+
+msgid "plugins.generic.customLocale.localeKey"
+msgstr "Llave"
+
+msgid "plugins.generic.customLocale.localeKeyValue"
+msgstr "Valor"
+
+msgid "plugins.generic.customLocale.customize"
+msgstr "Personalizar"
+
+msgid "grid.action.printChanges"
+msgstr "Descargue el archivo que alista todas las personalizaciones que realizó."
+
+msgid "plugins.generic.customLocale.file.edit"
+msgstr "Editando {$filename}"
+
+msgid "plugins.generic.customLocale.file.reference"
+msgstr "Texto predeterminado"
+
+msgid "plugins.generic.customLocale.file.custom"
+msgstr "Texto personalizado"
+
+msgid "plugins.generic.customLocale.customLocale"
+msgstr "Archivos de configuración regionales"
+
+msgid "plugins.generic.customLocale.files.pageTitle"
+msgstr "Nombre de archivo"
+
+msgid "plugins.generic.customLocale.customLocaleFiles"
+msgstr "Archivos de configuración regionales"
+
+msgid "plugins.generic.customLocale.searchDescription"
+msgstr "Ingrese aquí una llave completa de texto regionalizado. Las llaves encontradas son destacadas."
+
+msgid "plugins.generic.customLocale.fileDescription"
+msgstr "Ingrese el texto en el campo de texto personalizado correspondiente. Deje en blanco el campo de texto personalizado si es perentorio usar el texto predeterminado de OMP."
