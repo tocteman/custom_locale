@@ -50,6 +50,9 @@ msgstr "Customize"
 msgid "grid.action.printChanges"
 msgstr "Download a file that lists all the customizations you made."
 
+msgid "plugins.generic.customLocale.file.editHeader"
+msgstr "Customize locale keys"
+
 msgid "plugins.generic.customLocale.file.edit"
 msgstr "Editing {$filename}"
 
@@ -73,3 +76,6 @@ msgstr "Enter a complete locale key here. Keys found are highlighted."
 
 msgid "plugins.generic.customLocale.fileDescription"
 msgstr "Enter text into corresponding custom text field. Leave custom text field blank if the default OMP text should be used."
+
+msgid "plugins.generic.customLocale.searchResultsCount"
+msgstr "Displaying {{ currentLocaleKeys.length }} of {{ filteredKeysList.length }} results for \"{{ phraseSearched }}.\""

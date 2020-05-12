@@ -36,11 +36,8 @@ class LocaleFileForm extends Form {
 
 	/**
 	 * @copydoc Form::fetch
-	 * @param $currentPage int
-	 * @param $searchKey string
-	 * @param $searchString string
 	 */
-	function fetch($request, $currentPage=0, $searchKey='', $searchString='') {
+	function fetch($request) {
 		$file = $this->filePath;
 		$locale = $this->locale;
 		if (!CustomLocaleAction::isLocaleFile($locale, $file)) throw new Exception("$file is not a locale file!");
@@ -52,37 +49,12 @@ class LocaleFileForm extends Form {
 		if ($contextFileManager->fileExists($customLocalePath)) $localeContents = LocaleFile::load($customLocalePath);
 		else $localeContents = null;
 		$referenceLocaleContents = LocaleFile::load($file);
-
-		$numberOfItemsPerPage = 30;
-		$numberOfPages = ceil(sizeof($referenceLocaleContents) / $numberOfItemsPerPage);
-
-		if ($searchKey) {
-
-			$keysReferenceLocaleContents = array_keys($referenceLocaleContents);
-			$keyPosition = array_search($searchString, $keysReferenceLocaleContents);
-
-			if ($keyPosition==0) {
-				$currentPage = 1;
-			}
-
-			if ($keyPosition>0) {
-				$currentPage = floor($keyPosition/$numberOfItemsPerPage)+1;
-			}
-
-		}
-
-		// set page number, default: go to first page
-		if (!$currentPage){
-			$currentPage=1;
-		}
-
-		$dropdownEntries = array();
-		for ($i=1; $i<=$numberOfPages; $i++) {
-			if ($i==$currentPage) {
-				$dropdownEntries[$i] = "stay on page " . $i;
-			} else {
-				$dropdownEntries[$i] = "go to page " . $i;
-			}
+		$referenceLocaleContentsArray = [];
+		foreach ($referenceLocaleContents as $key => $value) {
+			$referenceLocaleContentsArray[] = [
+				'localeKey' => $key,
+				'value' => $value,
+			];
 		}
 
 		import('lib.pkp.classes.core.ArrayItemIterator');
@@ -91,10 +63,7 @@ class LocaleFileForm extends Form {
 			'filePath' => $this->filePath,
 			'localeContents' => $localeContents,
 			'locale' => $locale,
-			'currentPage' => $currentPage,
-			'dropdownEntries' => $dropdownEntries,
-			'searchString' => $searchString,
-			'referenceLocaleContents' => new ArrayItemIterator(LocaleFile::load($file), $currentPage, $numberOfItemsPerPage),
+			'referenceLocaleContentsArray' => $referenceLocaleContentsArray,
 		));
 
 		return parent::fetch($request);

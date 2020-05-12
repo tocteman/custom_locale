@@ -50,6 +50,9 @@ msgstr "Anpassen"
 msgid "grid.action.printChanges"
 msgstr "Hier können Sie eine Datei downloaden, die alle Anpassungen auflistet."
 
+msgid "plugins.generic.customLocale.file.editHeader"
+msgstr "Regionaleinstellung anpassen"
+
 msgid "plugins.generic.customLocale.file.edit"
 msgstr "{$filename} bearbeiten"
 
@@ -70,3 +73,6 @@ msgstr "Regionaleinstellungsdateien"
 
 msgid "plugins.generic.customLocale.fileDescription"
 msgstr "Geben Sie den angepassten Text in das jeweilige Feld ein. Lassen Sie das Feld leer, wenn der OMP-Standardtext genutzt werden soll."
+
+msgid "plugins.generic.customLocale.searchResultsCount"
+msgstr "{{ currentLocaleKeys.length }} von {{ filteredKeysList.length }} Ergebnissen für \"{{ phraseSearched }}\" ausgegeben."

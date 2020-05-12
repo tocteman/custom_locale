@@ -26,17 +26,17 @@ describe('Custom Locale plugin tests', function() {
 		cy.get('button#customLocale-button').click();
 		cy.get('span.label:contains("lib/pkp/locale/en_US/user.po")').parent().parent().parent().contains('Edit').click();
 		cy.wait(1000); // Form init
-		cy.get('input#searchString').type('user.affiliation');
-		cy.get('button:contains("Search for key")').click();
-		cy.get('tr.highlight').should('have.length', 1)
-		cy.get('tr.highlight input[id="user.affiliation"]').type('Floog Bleem', {delay: 0});
+		cy.get('input.pkpSearch__input').type('user.affiliation');
+		cy.get('button.pkpButton:contains("Search")').click();
+		cy.get('table.customLocale__cellTable').should('have.length', 3)
+		cy.get('td input[name="changes[user.affiliation]"]').type('Floog Bleem', {delay: 0});
 		cy.get('button:contains("Save and continue")').click();
 		cy.waitJQuery();
 		cy.get('a:contains("Cancel")').click();
 
 		// Check that the overridden locale key works.
-		cy.get('a:contains("admin")').click();
-		cy.get('a:contains("View Profile")').click();
+		cy.get('ul[id="navigationUser"] a:contains("admin")').click();
+		cy.get('ul[id="navigationUser"] a:contains("View Profile")').click({ force: true }); // Force workaround for lack of .hover() in Cypress
 		cy.wait(5000); // Delay to ensure cache refresh
 		cy.get('a:contains("Contact")').click();
 		cy.get('label[for^="affiliation-en_US"]:contains("Floog Bleem")');

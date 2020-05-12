@@ -2,12 +2,12 @@ Key data
 ============
 
 - name of the plugin: Custom Locale Plugin
-- author: Carola Fanselow (updates by Alec Smecher)
-- current version: 1.0.1.0
+- author: Carola Fanselow (updates by Alec Smecher, Erik Hanson)
+- current version: 1.1.0.0
 - see .travis.yml for compatibility information
 - github link: https://github.com/asmecher/customLocale.git
 - community plugin: yes
-- date: 2020/01/24
+- date: 2020/05/05
 
 Description
 ============
@@ -75,6 +75,7 @@ Classes, plugins, external software
 		RedirectAction
 		Form
 		TemplateManager
+		NotificationManager
 	
 - OMP classes used (js, jqeury, ajax): 0
 
@@ -88,7 +89,7 @@ Classes, plugins, external software
  
 Metrics
 --------
-- number of files: 19
+- number of files: 21
 - lines of code: 1k LOC
 
 Settings

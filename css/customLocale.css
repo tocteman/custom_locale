@@ -6,31 +6,33 @@
  *
  */
 
-.highlight {
-	background-color: #A9E2F3; 
-}
-
-td.input {
-	border-top: 1px solid #999;
-	padding: 15px 10px 5px 10px;
-}
-
 input.valueChanged, textArea.valueChanged {
 	background-color:#FFFF93 !important;
 }
 
-input, textArea {
-	background-color:#eee !important;
+.customLocale__headerDescription {
+	padding-top: 0.5rem;
+	font-size: 14px;
+	line-height: 1.6em;
 }
 
-#nextPage {
-	width:150px;
+.pkpTable td.customLocale__itemCount {
+	font-size: 12px;
+	padding: 0.5rem 1rem;
 }
 
-#searchString {
-	float:left;
-	width: 520px;
-	margin: 3px 10px 0px 0px;
-	padding: 0;
+.customLocale__cellTable {
+	border: inherit;
+}
+.customLocale__cellTable tr {
+	border-bottom: inherit;
+}
+
+.customLocale__cellHeader td {
+	font-weight: bold;
+}
+
+textarea.customLocale__fixedSize {
+	resize: none;
 }
 

@@ -6,77 +6,169 @@
  *
  *}
 
-<script type="text/javascript">
-	$(function() {ldelim}
-		// Attach the form handler.
-		$('#localeFilesForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
-	{rdelim});
-</script>
+<form class="pkp_form" id="localeFilesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="plugins.generic.customLocale.controllers.grid.CustomLocaleGridHandler" op="updateLocale" locale=$locale key=$filePath anchor="localeContents"}">
+	<link rel="stylesheet" href="{$baseUrl}/plugins/generic/customLocale/css/customLocale.css" type="text/css" />
+	<div id="customLocales">
+		{* TABLE *}
+		<table class="pkpTable">
+			{* TABLE HEADER *}
+			<caption>
+				<span class="pkpHeader__title">
+					<h3>{translate key="plugins.generic.customLocale.file.editHeader"}</h3>
+				</span>
+				<div class="pkpHeader__actions">
+					{* SEARCH BOX *}
+					<div class="pkpSearch">
+						<label>
+							<span class="-screenReader">{translate key="common.search"}</span>
+							<input
+								type="search"
+								id="customLocale__searchInput"
+								placeholder="{translate key="common.search"}"
+								class="pkpSearch__input"
+								v-model="searchPhrase"
+								@keydown.enter.prevent="search"
+							/>
+							<span class="pkpSearch__icons" @click.prevent="search">
+								<span aria-hidden="true" class="fa pkpSearch__icons--search fa-search pkpIcon--inline"></span>
+							</span>
+						</label>
+						<button 
+							aria-controls="customLocale__searchInput" 
+							class="pkpSearch__clear"
+							@click.prevent="initializeView"
+							v-if="searchPhrase.length > 0"
+						>
+							<span aria-hidden="true" class="fa fa-times"></span>
+							<span class="-screenReader">{translate key="common.clearSearch"}</span>
+						</button>
+					</div>
+					<button class="pkpButton" @click.prevent="search">{translate key="common.search"}</button>
 
-<script type="text/javascript">
-	var searchString = {$searchString|json_encode};
-	{literal}
-		function checkKey() {
-			document.getElementById("searchKey").checked = true;
-		}
-		if (document.getElementById(searchString)) {
-			document.getElementById(searchString).scrollIntoView(false);
-		}
-	{/literal}
-</script>
-
-<link rel="stylesheet" href="{$baseUrl}/plugins/generic/customLocale/css/customLocale.css" type="text/css" />
-
-<form class="pkp_form" id="localeFilesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="plugins.generic.customLocale.controllers.grid.CustomLocaleGridHandler" op="updateLocale" currentPage=$currentPage locale=$locale key=$filePath anchor="localeContents"}">
-
-<h3>{translate key="plugins.generic.customLocale.file.edit" filename=$filePath|escape}</h3>
-	<input type="checkbox" style="display:none" name="searchKey" id="searchKey">
-	<input type="text" name="searchString" id="searchString" value="{$searchString|escape}">
-	<button type="submit" onclick="checkKey()" class="submitFormButton button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">{translate key="plugins.generic.customLocale.search.key"}</button>
-
-	<p>{translate key="plugins.generic.customLocale.searchDescription"}</p><br><br>
-
-	<table class="listing" width="100%">
-		<tr><td colspan="3" class="headseparator">&nbsp;</td></tr>
-		<tr class="heading" valign="bottom">
-			<td width="35%">{translate key="plugins.generic.customLocale.localeKey"}</td>
-			<td width="60%">{translate key="plugins.generic.customLocale.localeKeyValue"}</td>
-		</tr>
-		<tr><td colspan="2" class="headseparator">&nbsp;</td></tr>
-
-		{iterate from=referenceLocaleContents key=key item=referenceValue}
-			{assign var=filenameEscaped value=$filename|escape:"url"|escape:"url"}
-			<tr valign="top"{if $key == $searchString} class="highlight"{/if}>
-				<td class="input">{$key|escape}</td>
-				<td class="input">
-					<input type="hidden" name="changes[]" value="{$key|escape}" />
-					{if $localeContents != null}{assign var=value value=$localeContents.$key}{else}{assign var=value value=''}{/if}
-					{if ($value|explode:"\n"|@count > 1) || (strlen($value) > 80) || ($referenceValue|explode:"\n"|@count > 1) || (strlen($referenceValue) > 80)}
-						{translate key="plugins.generic.customLocale.file.reference"}<br/>
-						<textarea name="junk[]" class="textArea default" rows="5" cols="50" onkeypress="return (event.keyCode >= 37 && event.keyCode <= 40);">{$referenceValue|escape}</textarea>
-						{translate key="plugins.generic.customLocale.file.custom"}<br/>
-						<textarea name="changes[]" id="{$key|escape}" {if $value}class="textField valueChanged"{else}class="textArea"{/if} rows="5" cols="50">{$value|escape}</textarea>
-					{else}
-						{translate key="plugins.generic.customLocale.file.reference"}<br/>
-						<input name="junk[]" class="textField default" type="text" size="50" onkeypress="return (event.keyCode >= 37 && event.keyCode <= 40);" value="{$referenceValue|escape}" /><br/>
-						{translate key="plugins.generic.customLocale.file.custom"}<br/>
-						<input name="changes[]" id="{$key|escape}" {if $value}class="textField valueChanged" {else}class="textField"{/if} type="text" size="50" value="{$value|escape}" />
-					{/if}
+				</div>
+				<div class="customLocale__headerDescription">
+					{translate key="plugins.generic.customLocale.file.edit" filename=$filePath|escape}
+				</div>
+			</caption>
+			<tr v-if="displaySearchResults">
+				<td class="customLocale__itemCount">
+					{translate key="plugins.generic.customLocale.searchResultsCount"}
 				</td>
 			</tr>
-		{/iterate}
-	</table>
+			{* MAIN BODY *}
+			<tr v-for="(localeKey, index) in currentLocaleKeys" :key="localeKey.localeKey">
+				<td>
+					<table class="pkpTable customLocale__cellTable">
+						<tr class="customLocale__cellHeader">
+							<td colspan="2">{{ localeKey.localeKey }}</td>
+						</tr>
+						<tr>
+							<td width="50%">
+								<label class="-screenReader" :for="'default-text-' + index">{translate key="plugins.generic.customLocale.file.reference"}</label>
+								<div v-if="localeKey.value.length > 50">
+									<textarea 
+										class="customLocale__fixedSize"
+										:id="'default-text-' + index"
+										v-model="localeKey.value"
+										rows="5"
+										cols="50"
+										disabled
 
-	<select name="nextPage" id="nextPage">
-		{foreach from=$dropdownEntries item=item key=key}
-			{assign var="prefix" value=$item|substr:0:4}
-			{if $prefix=="stay"}
-				<option selected="selected" value="{$key|escape}">{$item|escape}</option>
-			{else}
-				<option value="{$key|escape}">{$item|escape}</option>
-			{/if}
-		{/foreach}
-	</select>
+									></textarea>
+								</div>
+								<div v-else>
+									<input
+										type="text"
+										:id="'default-text-' + index"
+										v-model="localeKey.value"
+										size="50"
+										disabled
+									>
+								</div>
+							</td>
+							<td width="50%">
+								<label class="-screenReader" :for="'custom-text-' + index">{translate key="plugins.generic.customLocale.file.custom"}</label>
+								<div v-if="localeKey.value.length > 50">
+									<textarea
+										class="customLocale__fixedSize"
+										:id="'custom-text-' + index"
+										:name="'changes[' + localeKey.localeKey + ']'"
+										v-model="localEdited[localeKey.localeKey]"
+										rows="5"
+										cols="50"
+										v-bind:class="{ valueChanged : localEdited[localeKey.localeKey] != null}"
 
-	{fbvFormButtons id="submitCustomLocaleFileTemplate" submitText="plugins.generic.customLocale.saveAndContinue"}
+									></textarea>
+								</div>
+								<div v-else>
+									<input
+										type="text"
+										:id="'custom-text-' + index"
+										:name="'changes[' + localeKey.localeKey + ']'"
+										v-model="localEdited[localeKey.localeKey]"
+										v-bind:class="{ valueChanged : localEdited[localeKey.localeKey] != null}"
+									>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		{* PAGINATION *}
+		<nav role="navigation" aria-label="{translate key='common.pagination.label'}" class="pkpPagination" v-if="maxPages > 1">
+			<ul>
+				<li>
+					<button 
+						class="pkpButton" 
+						:disabled="currentPage === 1 ? true : null"
+						type="button"
+						@click="() => (currentPage -= 1)"
+						aria-label="{translate key='common.pagination.goToPage' page={translate key='common.pagination.previous'}}"
+					>
+						{translate key="common.pagination.previous"}
+					</button>
+				</li>
+				<li v-for="i in maxPages" :key="i">
+					<button 
+						class="pkpButton"
+						v-bind:class="currentPage === i ? 'pkpButton--isActive' : 'pkpButton--isLink'"
+						type="button"
+						@click="() => (currentPage = i)"
+						v-bind:aria-label="'{translate key="common.pagination.goToPage" page="{translate key='common.pageNumber' pageNumber=''}"}' + i"
+					>
+						{{ i }}
+					</button>
+
+				</li>
+				<li>
+					<button 
+						class="pkpButton" 
+						:disabled="currentPage === maxPages ? true : null" 
+						type="button"
+						@click="() => (currentPage += 1)"
+						aria-label="{translate key='common.pagination.goToPage' page={translate key='common.pagination.next'}}"
+					>
+						{translate key="common.pagination.next"}
+					</button>
+				</li>
+			</ul>
+		</nav>
+
+		{fbvFormButtons id="submitCustomLocaleFileTemplate" submitText="plugins.generic.customLocale.saveAndContinue"}
+	</div>
+	<script type="text/javascript">
+		$(function() {ldelim}
+			// Attach the form handler.
+			$('#localeFilesForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+		{rdelim});
+		{if $localeContents}
+			customLocalesApp.data.edited = {$localeContents|json_encode};
+		{else}
+			customLocalesApp.data.edited = {ldelim}{rdelim};
+		{/if}
+		customLocalesApp.data.localeKeysMaster = {$referenceLocaleContentsArray|json_encode};
+		new pkp.Vue(customLocalesApp);
+	</script>
 </form>
