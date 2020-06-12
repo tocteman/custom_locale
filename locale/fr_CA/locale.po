@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Marie-Hélène Vézina, Bibliothèques, Université de Montréal <marie-helene.vezina@umontreal.ca>\n"
+"Last-Translator: Marie-HÃ©lÃ¨ne VÃ©zina, BibliothÃ¨ques, UniversitÃ© de MontrÃ©al <marie-helene.vezina@umontreal.ca>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,31 +15,31 @@ msgid "plugins.generic.customLocale.name"
 msgstr "Plugiciel de personnalisation"
 
 msgid "plugins.generic.customLocale.description"
-msgstr "Ce plugiciel permet de personnaliser le texte par défaut de l'interface utilisateur de OMP."
+msgstr "Ce plugiciel permet de personnaliser le texte par dÃ©faut de l'interface utilisateur de OMP."
 
 msgid "plugins.generic.customLocale.search.fileName"
 msgstr "Rechercher parmi les noms de fichiers"
 
 msgid "plugins.generic.customLocale.search.key"
-msgstr "Rechercher une clé"
+msgstr "Rechercher une clÃ©"
 
 msgid "plugins.generic.customLocale.saveAndContinue"
 msgstr "Sauvegarder et continuer"
 
 msgid "plugins.generic.customLocale.noneCreated"
-msgstr "Aucun fichier trouvé."
+msgstr "Aucun fichier trouvÃ©."
 
 msgid "plugins.generic.customLocale.printChanges"
-msgstr "Télécharger la documentation"
+msgstr "TÃ©lÃ©charger la documentation"
 
 msgid "plugins.generic.customLocale.localeKey.description"
-msgstr "Entrer le nom complet d'une clé à rechercher."
+msgstr "Entrer le nom complet d'une clÃ© Ã  rechercher."
 
 msgid "plugins.generic.customLocale.path"
 msgstr "Action"
 
 msgid "plugins.generic.customLocale.localeKey"
-msgstr "Clé"
+msgstr "ClÃ©"
 
 msgid "plugins.generic.customLocale.localeKeyValue"
 msgstr "Valeur"
@@ -48,16 +48,16 @@ msgid "plugins.generic.customLocale.customize"
 msgstr "Personnaliser"
 
 msgid "grid.action.printChanges"
-msgstr "Télécharger un fichier répertoriant toutes les personnalisations que vous avez apportées."
+msgstr "TÃ©lÃ©charger un fichier rÃ©pertoriant toutes les personnalisations que vous avez apportÃ©es."
 
 msgid "plugins.generic.customLocale.file.edit"
 msgstr "Modification du fichier {$filename}"
 
 msgid "plugins.generic.customLocale.file.reference"
-msgstr "Texte par défaut"
+msgstr "Texte par dÃ©faut"
 
 msgid "plugins.generic.customLocale.file.custom"
-msgstr "Texte personnalisé"
+msgstr "Texte personnalisÃ©"
 
 msgid "plugins.generic.customLocale.customLocale"
 msgstr "Personnalisations"
@@ -69,7 +69,7 @@ msgid "plugins.generic.customLocale.customLocaleFiles"
 msgstr "Fichiers personnalisables"
 
 msgid "plugins.generic.customLocale.searchDescription"
-msgstr "Saisir ici le nom complet d'une clé. Les clés trouvées sont affichées en surbrillance."
+msgstr "Saisir ici le nom complet d'une clÃ©. Les clÃ©s trouvÃ©es sont affichÃ©es en surbrillance."
 
 msgid "plugins.generic.customLocale.fileDescription"
-msgstr "Saisir le texte dans le champ de texte personnalisé correspondant. Laisser le champ de texte personnalisé vide si le texte par défaut de OMP doit être utilisé."
+msgstr "Saisir le texte dans le champ de texte personnalisÃ© correspondant. Laisser le champ de texte personnalisÃ© vide si le texte par dÃ©faut de OMP doit Ãªtre utilisÃ©."
