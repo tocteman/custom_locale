@@ -1,0 +1,87 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-07-11 17:40+0000\n"
+"Last-Translator: Tran Ngoc Trung <khuchatthienduong@gmail.com>\n"
+"Language-Team: Vietnamese <http://translate.pkp.sfu.ca/projects/plugins/"
+"customLocale/vi_VN/>\n"
+"Language: vi_VN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.generic.customLocale.file.edit"
+msgstr "Sửa {$filename}"
+
+msgid "plugins.generic.customLocale.noneCreated"
+msgstr "Không có tập tin nào được tìm thấy."
+
+msgid "plugins.generic.customLocale.files.pageTitle"
+msgstr "Tên tập tin"
+
+msgid "plugins.generic.customLocale.searchResultsCount"
+msgstr ""
+"Hiển thị {{ currentLocaleKeys.length }} của {{ filteredKeysList.length }} "
+"cho \"{{ phraseSearched }}.\""
+
+msgid "plugins.generic.customLocale.fileDescription"
+msgstr ""
+"Nhập văn bản vào trường văn bản tùy chỉnh tương ứng. Để trống trường văn bản "
+"tùy chỉnh nếu sử dụng văn bản OMP mặc định."
+
+msgid "plugins.generic.customLocale.searchDescription"
+msgstr "Nhập một khóa ngôn ngữ đầy đủ ở đây. Các khóa tìm thấy được tô sáng."
+
+msgid "plugins.generic.customLocale.customLocaleFiles"
+msgstr "Các tập tin ngôn ngữ"
+
+msgid "plugins.generic.customLocale.customLocale"
+msgstr "Các ngôn ngữ"
+
+msgid "plugins.generic.customLocale.file.custom"
+msgstr "Văn bản tùy chỉnh"
+
+msgid "plugins.generic.customLocale.file.reference"
+msgstr "Văn bản mặc định"
+
+msgid "plugins.generic.customLocale.file.editHeader"
+msgstr "Tùy chỉnh khóa ngôn ngữ"
+
+msgid "grid.action.printChanges"
+msgstr "Tải xuống một tệp liệt kê tất cả các tùy chỉnh bạn đã thực hiện."
+
+msgid "plugins.generic.customLocale.customize"
+msgstr "Tùy chỉnh"
+
+msgid "plugins.generic.customLocale.localeKeyValue"
+msgstr "Giá trị"
+
+msgid "plugins.generic.customLocale.localeKey"
+msgstr "Khóa"
+
+msgid "plugins.generic.customLocale.path"
+msgstr "Hoạt động"
+
+msgid "plugins.generic.customLocale.localeKey.description"
+msgstr "Nhập toàn bộ khóa ngôn ngữ để tìm kiếm."
+
+msgid "plugins.generic.customLocale.printChanges"
+msgstr "Tải tài liệu"
+
+msgid "plugins.generic.customLocale.saveAndContinue"
+msgstr "Lưu và tiếp tục"
+
+msgid "plugins.generic.customLocale.search.key"
+msgstr "Tìm kiếm khóa"
+
+msgid "plugins.generic.customLocale.search.fileName"
+msgstr "Tìm kiếm trong tên tập tin"
+
+msgid "plugins.generic.customLocale.description"
+msgstr ""
+"Plugin này cho phép tùy chỉnh văn bản giao diện người dùng mặc định được OMP "
+"sử dụng."
+
+msgid "plugins.generic.customLocale.name"
+msgstr "Plugin Ngôn ngữ tùy chỉnh"

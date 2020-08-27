@@ -1,0 +1,89 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-07-08 18:40+0000\n"
+"Last-Translator: Ramón Martins Sodoma da Fonseca <ramon.ibict@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/"
+"plugins/customLocale/pt_BR/>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.generic.customLocale.description"
+msgstr ""
+"Este plugin permite a personalização da interface padrão do usuário usado "
+"pelo OMP."
+
+msgid "plugins.generic.customLocale.searchResultsCount"
+msgstr ""
+"Exibindo {{ currentLocaleKeys.length }} de {{ filteredKeysList.length }} "
+"resultados para \"{{ phraseSearched }}.\""
+
+msgid "plugins.generic.customLocale.fileDescription"
+msgstr ""
+"Digite o texto no campo de texto personalizado correspondente. Deixe o campo "
+"de texto personalizado em branco caso o texto padrão do OMP deva ser usado."
+
+msgid "plugins.generic.customLocale.searchDescription"
+msgstr ""
+"Informe aqui uma chave completa de tradução. Chaves encontradas estão em "
+"destaque."
+
+msgid "plugins.generic.customLocale.customLocaleFiles"
+msgstr "Arquivos de tradução"
+
+msgid "plugins.generic.customLocale.files.pageTitle"
+msgstr "Nome do arquivo"
+
+msgid "plugins.generic.customLocale.customLocale"
+msgstr "Traduções"
+
+msgid "plugins.generic.customLocale.file.custom"
+msgstr "Texto personalizado"
+
+msgid "plugins.generic.customLocale.file.reference"
+msgstr "Texto padrão"
+
+msgid "plugins.generic.customLocale.file.edit"
+msgstr "Editando {$filename}"
+
+msgid "plugins.generic.customLocale.file.editHeader"
+msgstr "Personalizar chaves de tradução"
+
+msgid "grid.action.printChanges"
+msgstr "Baixar o arquivo que lista as personalizações realizadas."
+
+msgid "plugins.generic.customLocale.customize"
+msgstr "Personalizar"
+
+msgid "plugins.generic.customLocale.localeKeyValue"
+msgstr "Valor"
+
+msgid "plugins.generic.customLocale.localeKey"
+msgstr "Chave"
+
+msgid "plugins.generic.customLocale.path"
+msgstr "Ação"
+
+msgid "plugins.generic.customLocale.localeKey.description"
+msgstr "Informe uma chave de tradução completa para pesquisar."
+
+msgid "plugins.generic.customLocale.printChanges"
+msgstr "Baixar documentação"
+
+msgid "plugins.generic.customLocale.noneCreated"
+msgstr "Nenhum arquivo encontrado."
+
+msgid "plugins.generic.customLocale.saveAndContinue"
+msgstr "Salvar e continuar"
+
+msgid "plugins.generic.customLocale.search.key"
+msgstr "Pesquisar por chave"
+
+msgid "plugins.generic.customLocale.search.fileName"
+msgstr "Pesquisar em nomes de arquivo"
+
+msgid "plugins.generic.customLocale.name"
+msgstr "Tradução personalizada"

@@ -1,0 +1,88 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-08-27 01:22+0000\n"
+"Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
+"Language-Team: Danish <http://translate.pkp.sfu.ca/projects/plugins/"
+"customLocale/da_DK/>\n"
+"Language: da_DK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.generic.customLocale.searchResultsCount"
+msgstr ""
+"Visning af {{ currentLocaleKeys.length }} af {{ filteredKeysList.length }} "
+"resulter for \"{{ phraseSearched }}.\""
+
+msgid "plugins.generic.customLocale.fileDescription"
+msgstr ""
+"Indtast tekst i det korresponderende brugerdefinerede tekstfelt. Lad det "
+"brugerdefinerede tekstfelt være tomt, hvis standard-OMP-teksten skal "
+"anvendes."
+
+msgid "plugins.generic.customLocale.searchDescription"
+msgstr "Indtast en komplet sprogkode her. Fundne koder bliver fremhævet."
+
+msgid "plugins.generic.customLocale.customLocaleFiles"
+msgstr "Sprogfiler"
+
+msgid "plugins.generic.customLocale.files.pageTitle"
+msgstr "Filnavn"
+
+msgid "plugins.generic.customLocale.customLocale"
+msgstr "Sprog"
+
+msgid "plugins.generic.customLocale.file.custom"
+msgstr "Brugerdefineret tekst"
+
+msgid "plugins.generic.customLocale.file.reference"
+msgstr "Standardtekst"
+
+msgid "plugins.generic.customLocale.file.edit"
+msgstr "Redigering af {$filename}"
+
+msgid "plugins.generic.customLocale.file.editHeader"
+msgstr "Tilpas sprogkoder"
+
+msgid "grid.action.printChanges"
+msgstr "Download en fil, der viser alle de tilpasninger, du har foretaget."
+
+msgid "plugins.generic.customLocale.customize"
+msgstr "Tilpas"
+
+msgid "plugins.generic.customLocale.localeKeyValue"
+msgstr "Værdi"
+
+msgid "plugins.generic.customLocale.localeKey"
+msgstr "Kode"
+
+msgid "plugins.generic.customLocale.path"
+msgstr "Handling"
+
+msgid "plugins.generic.customLocale.localeKey.description"
+msgstr "Indskriv hele sprogkoden i søgningen."
+
+msgid "plugins.generic.customLocale.printChanges"
+msgstr "Download dokumentation"
+
+msgid "plugins.generic.customLocale.noneCreated"
+msgstr "Der blev ikke fundet nogen filer."
+
+msgid "plugins.generic.customLocale.saveAndContinue"
+msgstr "Gem og fortsæt"
+
+msgid "plugins.generic.customLocale.search.key"
+msgstr "Søg efter kode"
+
+msgid "plugins.generic.customLocale.search.fileName"
+msgstr "Søg i filnavne"
+
+msgid "plugins.generic.customLocale.description"
+msgstr ""
+"Denne plugin muliggør tilpasning af teksten på standard brugergrænsefladen "
+"til OMP."
+
+msgid "plugins.generic.customLocale.name"
+msgstr "Custom Locale Plugin"

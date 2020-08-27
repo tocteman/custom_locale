@@ -1,0 +1,88 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-07-23 05:47+0000\n"
+"Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
+"Language-Team: Czech <http://translate.pkp.sfu.ca/projects/plugins/"
+"customLocale/cs/>\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.generic.customLocale.searchResultsCount"
+msgstr ""
+"Zobrazení {{ currentLocaleKeys.length }} z {{ filteredKeysList.length }} "
+"výsledků pro \"{{ phraseSearched }}.\""
+
+msgid "plugins.generic.customLocale.fileDescription"
+msgstr ""
+"Vložte text to příslušného pole. Pokud má být použit původní text OMP, "
+"nechte pole volné."
+
+msgid "plugins.generic.customLocale.searchDescription"
+msgstr "Zde vložte kompletní lokalizační klíče. Nalezené klíče jsou zvýrazněny."
+
+msgid "plugins.generic.customLocale.customLocaleFiles"
+msgstr "Soubory lokalizací"
+
+msgid "plugins.generic.customLocale.files.pageTitle"
+msgstr "Jméno souboru"
+
+msgid "plugins.generic.customLocale.customLocale"
+msgstr "Lokalizace"
+
+msgid "plugins.generic.customLocale.file.custom"
+msgstr "Přizpůsobený text"
+
+msgid "plugins.generic.customLocale.file.reference"
+msgstr "Původní text"
+
+msgid "plugins.generic.customLocale.file.edit"
+msgstr "Editace {$filename}"
+
+msgid "plugins.generic.customLocale.file.editHeader"
+msgstr "Přizpůsobení místních klíčů"
+
+msgid "grid.action.printChanges"
+msgstr ""
+"Stáhnutí souboru, ve kterém je seznam všech přizpůsobení, které jste udělali."
+
+msgid "plugins.generic.customLocale.customize"
+msgstr "Přizpůsobení"
+
+msgid "plugins.generic.customLocale.localeKeyValue"
+msgstr "Hodnota"
+
+msgid "plugins.generic.customLocale.localeKey"
+msgstr "Klíč"
+
+msgid "plugins.generic.customLocale.path"
+msgstr "Akce"
+
+msgid "plugins.generic.customLocale.localeKey.description"
+msgstr "Vložte celý místní klíč, který se má hledat."
+
+msgid "plugins.generic.customLocale.printChanges"
+msgstr "Stažení dokumentace"
+
+msgid "plugins.generic.customLocale.noneCreated"
+msgstr "Nebyl nalezen žádný soubor."
+
+msgid "plugins.generic.customLocale.saveAndContinue"
+msgstr "Uložit a pokračovat"
+
+msgid "plugins.generic.customLocale.search.key"
+msgstr "Hledání klíče"
+
+msgid "plugins.generic.customLocale.search.fileName"
+msgstr "Hledání v názvech souborů"
+
+msgid "plugins.generic.customLocale.description"
+msgstr ""
+"Tento plugin umožňuje uložení uživatelských nastavení textového interface "
+"pro OMP."
+
+msgid "plugins.generic.customLocale.name"
+msgstr "Plugin pro uživatelské přizpůsobení aplikace"
