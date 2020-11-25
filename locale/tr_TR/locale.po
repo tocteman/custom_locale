@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-06-16 08:39+0000\n"
+"PO-Revision-Date: 2020-11-22 05:51+0000\n"
 "Last-Translator: Hüseyin Körpeoğlu <yoruyenturk@hotmail.com>\n"
 "Language-Team: Turkish <http://translate.pkp.sfu.ca/projects/plugins/"
 "customLocale/tr_TR/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 msgid "plugins.generic.customLocale.fileDescription"
 msgstr ""
-"İlgili özel metin alanına metin girin. Varsayılan OMP metninin "
+"İlgili özel metin alanına metin girin. Varsayılan OJS/OMP metninin "
 "kullanılmasını istiyorsanız özel metin alanını boş bırakın."
 
 msgid "plugins.generic.customLocale.searchDescription"
@@ -80,7 +80,7 @@ msgstr "Dosya adlarında ara"
 
 msgid "plugins.generic.customLocale.description"
 msgstr ""
-"Bu eklenti, OMP tarafından kullanılan varsayılan kullanıcı arayüzü "
+"Bu eklenti, OJS ve OMP tarafından kullanılan varsayılan kullanıcı arayüz "
 "çevirisinin özelleştirilmesini sağlar."
 
 msgid "plugins.generic.customLocale.name"
