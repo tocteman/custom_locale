@@ -1,2 +1,88 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-12-23 07:35+0000\n"
+"Last-Translator: Kazimir Hrastek <kazimir3385@gmail.com>\n"
+"Language-Team: Bosnian <http://translate.pkp.sfu.ca/projects/plugins/"
+"customLocale/bs_BA/>\n"
+"Language: bs_BA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.generic.customLocale.name"
+msgstr "Dodatak lokalnog prilagođavanja"
+
+msgid "plugins.generic.customLocale.searchDescription"
+msgstr "Ovdje unesite kompletan lokalni ključ. Pronađeni ključevi su istaknuti."
+
+msgid "plugins.generic.customLocale.customLocaleFiles"
+msgstr "Lokalni fajlovi"
+
+msgid "plugins.generic.customLocale.customLocale"
+msgstr "Lokalni"
+
+msgid "plugins.generic.customLocale.file.editHeader"
+msgstr "Prilagodite lokalne ključeve"
+
+msgid "plugins.generic.customLocale.localeKey.description"
+msgstr "Unesite cijeli lokalni ključ za pretragu."
+
+msgid "plugins.generic.customLocale.searchResultsCount"
+msgstr ""
+"Prikazivanje {{currentLocaleKeys.length}} od {{filteredKeysList.length}} "
+"rezultata za \"{{phraseSearched}}\"."
+
+msgid "plugins.generic.customLocale.fileDescription"
+msgstr ""
+"Unesite tekst u odgovarajuće prilagođeno polje za tekst. Ostavite prazno "
+"polje za prilagođeni tekst ako treba koristiti zadani OJS/OMP tekst."
+
+msgid "plugins.generic.customLocale.files.pageTitle"
+msgstr "Naziv fajla"
+
+msgid "plugins.generic.customLocale.file.custom"
+msgstr "Prilagođeni tekst"
+
+msgid "plugins.generic.customLocale.file.reference"
+msgstr "Zadani text"
+
+msgid "plugins.generic.customLocale.file.edit"
+msgstr "Uređivanje {$ filename}"
+
+msgid "grid.action.printChanges"
+msgstr "Preuzmite fajl koji sadrži popis svih prilagođavanja koje ste izvršili."
+
+msgid "plugins.generic.customLocale.customize"
+msgstr "Prilagodi"
+
+msgid "plugins.generic.customLocale.localeKeyValue"
+msgstr "Vrijednost"
+
+msgid "plugins.generic.customLocale.localeKey"
+msgstr "Ključ"
+
+msgid "plugins.generic.customLocale.path"
+msgstr "Akcija"
+
+msgid "plugins.generic.customLocale.printChanges"
+msgstr "Preuzmite dokumentaciju"
+
+msgid "plugins.generic.customLocale.noneCreated"
+msgstr "Nije pronađen nijedan fajl."
+
+msgid "plugins.generic.customLocale.saveAndContinue"
+msgstr "Sačuvaj i nastavi"
+
+msgid "plugins.generic.customLocale.search.key"
+msgstr "Potražite ključ"
+
+msgid "plugins.generic.customLocale.search.fileName"
+msgstr "Pretražite u imenima fajlova"
+
+msgid "plugins.generic.customLocale.description"
+msgstr ""
+"Ovaj dodatak omogućava prilagođavanje zadanog teksta korisničkog interfejsa "
+"koji koristi OJS i OMP."
