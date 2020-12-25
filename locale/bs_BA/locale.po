@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-12-25 07:47+0000\n"
+"PO-Revision-Date: 2020-12-25 08:00+0000\n"
 "Last-Translator: Kazimir Hrastek <kazimir3385@gmail.com>\n"
 "Language-Team: Bosnian <http://translate.pkp.sfu.ca/projects/plugins/"
 "customLocale/bs_BA/>\n"
@@ -51,7 +51,7 @@ msgid "plugins.generic.customLocale.file.reference"
 msgstr "Zadani text"
 
 msgid "plugins.generic.customLocale.file.edit"
-msgstr "Uređivanje {$ filename}"
+msgstr "Uređivanje {$filename}"
 
 msgid "grid.action.printChanges"
 msgstr "Preuzmite fajl koji sadrži popis svih prilagođavanja koje ste izvršili."
