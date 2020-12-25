@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-12-23 07:35+0000\n"
+"PO-Revision-Date: 2020-12-25 07:47+0000\n"
 "Last-Translator: Kazimir Hrastek <kazimir3385@gmail.com>\n"
 "Language-Team: Bosnian <http://translate.pkp.sfu.ca/projects/plugins/"
 "customLocale/bs_BA/>\n"
@@ -13,22 +13,23 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 
 msgid "plugins.generic.customLocale.name"
-msgstr "Dodatak lokalnog prilagođavanja"
+msgstr "Dodatak prilagođavanja lokalizacije"
 
 msgid "plugins.generic.customLocale.searchDescription"
-msgstr "Ovdje unesite kompletan lokalni ključ. Pronađeni ključevi su istaknuti."
+msgstr ""
+"Ovdje unesite kompletan ključ lokalizacije. Pronađeni ključevi su istaknuti."
 
 msgid "plugins.generic.customLocale.customLocaleFiles"
-msgstr "Lokalni fajlovi"
+msgstr "Fajlovi lokalizacije"
 
 msgid "plugins.generic.customLocale.customLocale"
-msgstr "Lokalni"
+msgstr "Lokalizacije"
 
 msgid "plugins.generic.customLocale.file.editHeader"
-msgstr "Prilagodite lokalne ključeve"
+msgstr "Prilagodite ključeve lokalizacije"
 
 msgid "plugins.generic.customLocale.localeKey.description"
-msgstr "Unesite cijeli lokalni ključ za pretragu."
+msgstr "Unesite cijeli ključ lokalizacije za pretragu."
 
 msgid "plugins.generic.customLocale.searchResultsCount"
 msgstr ""
