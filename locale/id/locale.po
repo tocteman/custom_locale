@@ -1,2 +1,88 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2021-01-15 07:53+0000\n"
+"Last-Translator: Ramli Baharuddin <ramli.baharuddin@relawanjurnal.id>\n"
+"Language-Team: Indonesian <http://translate.pkp.sfu.ca/projects/plugins/"
+"customLocale/id_ID/>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.generic.customLocale.searchResultsCount"
+msgstr ""
+"Menampilkan {{ currentLocaleKeys.length }} dari {{ filteredKeysList.length }}"
+" hasil untuk \"{{ phraseSearched }}\"."
+
+msgid "plugins.generic.customLocale.fileDescription"
+msgstr ""
+"Masukkan teks ke dalam kolom teks kustom yang sesuai. Kosongkan kolomnya "
+"jika teks OJS/OMP bawaan harus digunakan."
+
+msgid "plugins.generic.customLocale.searchDescription"
+msgstr ""
+"Masukkan local key lengkap di sini. Key yang ditemukan akan diberi tanda."
+
+msgid "plugins.generic.customLocale.customLocaleFiles"
+msgstr "File bahasa"
+
+msgid "plugins.generic.customLocale.files.pageTitle"
+msgstr "Nama file"
+
+msgid "plugins.generic.customLocale.customLocale"
+msgstr "Bahasa"
+
+msgid "plugins.generic.customLocale.file.custom"
+msgstr "Teks Ubahan"
+
+msgid "plugins.generic.customLocale.file.reference"
+msgstr "Teks Bawaan"
+
+msgid "plugins.generic.customLocale.file.edit"
+msgstr "Edit {$filename}"
+
+msgid "plugins.generic.customLocale.file.editHeader"
+msgstr "Ubah local key"
+
+msgid "grid.action.printChanges"
+msgstr "Unduh fileh yang berisi semua perubahan yang telah Anda lakukan."
+
+msgid "plugins.generic.customLocale.customize"
+msgstr "Ubah"
+
+msgid "plugins.generic.customLocale.localeKeyValue"
+msgstr "Nilai"
+
+msgid "plugins.generic.customLocale.localeKey"
+msgstr "Kunci"
+
+msgid "plugins.generic.customLocale.path"
+msgstr "Aksi"
+
+msgid "plugins.generic.customLocale.localeKey.description"
+msgstr "Masukkan local key lengkap untuk pencarian."
+
+msgid "plugins.generic.customLocale.printChanges"
+msgstr "Dokumentasi Unduhan"
+
+msgid "plugins.generic.customLocale.noneCreated"
+msgstr "Tidak ada file yang ditemukan."
+
+msgid "plugins.generic.customLocale.saveAndContinue"
+msgstr "Simpan dan lanjutkan"
+
+msgid "plugins.generic.customLocale.search.key"
+msgstr "Cari key"
+
+msgid "plugins.generic.customLocale.search.fileName"
+msgstr "Cari pada nama file"
+
+msgid "plugins.generic.customLocale.description"
+msgstr ""
+"Plugin ini memungkinkan kustomisasi teks antarmuka pengguna bawaan pada OJS "
+"dan OMP."
+
+msgid "plugins.generic.customLocale.name"
+msgstr "Plugin Pengubah Bahasa"
