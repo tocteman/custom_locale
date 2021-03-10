@@ -160,7 +160,7 @@ class CustomLocaleGridHandler extends GridHandler {
 
 		$localeKeys = array_keys($locales);
 
-		$locale = $localeKeys[$filter['locale']];
+		$locale = $filter['locale'];
 		$search = $filter['search'];
 
 		$localeFiles = CustomLocaleAction::getLocaleFiles($locale);
@@ -221,14 +221,9 @@ class CustomLocaleGridHandler extends GridHandler {
 			$request,
 			array_merge_recursive(
 				$filterData,
-				array(
-					'localeOptions' => array_keys($locales),
-					'fieldOptions' => array('CUSTOMLOCALE_FIELD_PATH' => 'fieldopt1'),
-					'matchOptions' => array(
-						'contains' => 'form.contains',
-						'is' => 'form.is'
-					),
-				)
+				[
+					'localeOptions' => $locales,
+				]
 			)
 		);
 	}
@@ -239,7 +234,10 @@ class CustomLocaleGridHandler extends GridHandler {
 	function getFilterSelectionData($request) {
 		// Get the search terms.
 
-		$locale = $request->getUserVar('locale') ? (int)$request->getUserVar('locale') : 0;
+		$locales = $request->getContext()->getSupportedLocaleNames();
+		$locale = $request->getUserVar('locale');
+		if (!in_array($locale, array_keys($locales))) $locale = LOCALE_DEFAULT;
+
 		$searchField = $request->getUserVar('searchField');
 		$searchMatch = $request->getUserVar('searchMatch');
 		$search = $request->getUserVar('search');
