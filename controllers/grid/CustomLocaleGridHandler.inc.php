@@ -71,9 +71,10 @@ class CustomLocaleGridHandler extends GridHandler {
 			$customFilePath = "$customFilesDir/$filename";
 
 			if ($contextFileManager->fileExists($customFilePath)) {
-				$translations = Gettext\Translations::fromPoFile($customFilePath);
+				$loader = new Gettext\Loader\PoLoader();
+				$translations = $loader->loadFile($customFilePath);
 			} else {
-				$translations = new \Gettext\Translations();
+				$translations = \Gettext\Translations::create(null, $locale);
 			}
 
 			foreach ($changes as $key => $value) {
@@ -81,11 +82,11 @@ class CustomLocaleGridHandler extends GridHandler {
 				if (!empty($value)) {
 					$translation = $translations->find('', $key);
 					if ($translation) {
-						$translation->setTranslation($value);
+						$translation->translate($value);
 					} else {
-						$translation = new \Gettext\Translation('', $key);
-						$translation->setTranslation($value);
-						$translations->append($translation);
+						$translation = \Gettext\Translation::create('', $key);
+						$translation->translate($value);
+						$translations->add($translation);
 					}
 				} else {
 					if ($translation = $translations->find('', $key)) {
@@ -95,7 +96,8 @@ class CustomLocaleGridHandler extends GridHandler {
 			}
 
 			$contextFileManager->mkdirtree(dirname($customFilePath));
-			$translations->toPoFile($customFilePath);
+			$poGenerator = new Gettext\Generator\PoGenerator();
+			$poGenerator->generateFile($translations, $customFilePath);
 
 			// Create success notification and close modal on save
 			$notificationMgr = new NotificationManager();
