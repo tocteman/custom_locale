@@ -9,11 +9,19 @@
  * @class CustomLocaleGridHandler
  */
 
-import('lib.pkp.classes.controllers.grid.GridHandler');
-import('plugins.generic.customLocale.controllers.grid.CustomLocaleGridCellProvider');
-import('classes.handler.Handler');
-import('plugins.generic.customLocale.classes.CustomLocale');
+use PKP\controllers\grid\GridHandler;
+use PKP\security\authorization\ContextAccessPolicy;
+use PKP\security\Role;
+use PKP\controllers\grid\GridColumn;
+use PKP\controllers\grid\feature\PagingFeature;
+use PKP\file\ContextFileManager;
+use PKP\core\JSONMessage;
 
+use APP\notification\NotificationManager;
+use APP\handler\Handler;
+
+import('plugins.generic.customLocale.controllers.grid.CustomLocaleGridCellProvider');
+import('plugins.generic.customLocale.classes.CustomLocale');
 import('plugins.generic.customLocale.controllers.grid.CustomLocaleAction');
 
 class CustomLocaleGridHandler extends GridHandler {
@@ -37,7 +45,7 @@ class CustomLocaleGridHandler extends GridHandler {
 	function __construct() {
 		parent::__construct();
 		$this->addRoleAssignment(
-			array(ROLE_ID_MANAGER, ROLE_ID_SITE_ADMIN),
+			[Role::ROLE_ID_MANAGER, Role::ROLE_ID_SITE_ADMIN],
 			array('fetchGrid', 'editLocaleFile', 'updateLocale')
 		);
 	}
@@ -46,7 +54,6 @@ class CustomLocaleGridHandler extends GridHandler {
 	 * @copydoc PKPHandler::authorize()
 	 */
 	function authorize($request, &$args, $roleAssignments) {
-		import('lib.pkp.classes.security.authorization.ContextAccessPolicy');
 		$this->addPolicy(new ContextAccessPolicy($request, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
@@ -65,7 +72,6 @@ class CustomLocaleGridHandler extends GridHandler {
 		// save changes
 		$changes = (array) $args['changes'];
 		if (!empty($changes)) {
-			import('lib.pkp.classes.file.ContextFileManager');
 			$contextFileManager = new ContextFileManager($context->getId());
 			$customFilesDir = $contextFileManager->getBasePath() . "customLocale/$locale/";
 			$customFilePath = "$customFilesDir/$filename";
@@ -198,7 +204,6 @@ class CustomLocaleGridHandler extends GridHandler {
 	 * @copydoc GridHandler::initFeatures()
 	 */
 	function initFeatures($request, $args) {
-		import('lib.pkp.classes.controllers.grid.feature.PagingFeature');
 		return array(new PagingFeature());
 	}
 
