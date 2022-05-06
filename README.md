@@ -1,6 +1,8 @@
 - Custom Locale Plugin
-- Version: 1.2.0.0
+- Version: (see version.xml)
 - Author: Carola Fanselow (updates by Alec Smecher, Erik Hanson)
+
+[![Build Status](https://travis-ci.org/pkp/customLocale.svg?branch=main)](https://travis-ci.org/pkp/customLocale)
 
 ## About
 
@@ -25,7 +27,7 @@ This plugin is licensed under the GNU General Public License v3.
 
 ## System Requirements
 
-This plugin is compatible with OJS/OMP/OPS +3.4.
+This plugin is compatible with OJS/OMP/OPS. Use the Plugin Gallery to install the plugin in order to ensure that you are using a compatible release.
 
 ## Installation
 
